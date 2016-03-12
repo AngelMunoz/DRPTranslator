@@ -1,0 +1,27 @@
+{
+  "name": "drptranslator",
+  "version": "1.0.0",
+  "description": "A DNA-RNA-Protein translator library",
+  "main": "dist/index.js",
+  "typings": "dist/drptranslator.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelMunoz/DRPTranslator.git"
+  },
+  "keywords": [
+    "DNA",
+    "RNA",
+    "Protein",
+    "Translator",
+    "Typescript"
+  ],
+  "author": "Angel D. Munoz <'scythes.lol@gmail.com'> (http://angelmunoz.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AngelMunoz/DRPTranslator/issues"
+  },
+  "homepage": "https://github.com/AngelMunoz/DRPTranslator#readme"
+}
