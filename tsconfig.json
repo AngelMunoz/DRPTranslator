@@ -9,9 +9,6 @@
     "files": [
         "src/index.ts",
         "tests/index.test.ts",
-        "typings/browser.d.ts",
-        "typings/browser/ambient/chai/index.d.ts",
-        "typings/browser/ambient/mocha/index.d.ts",
         "typings/main.d.ts",
         "typings/main/ambient/chai/index.d.ts",
         "typings/main/ambient/mocha/index.d.ts"
@@ -20,7 +17,9 @@
         "**/*.ts",
         "**/*.tsx",
         "!node_modules/**",
-        "!dist/**"
+        "!dist/**",
+        "!typings/browser.d.ts",
+        "!typings/browser/**"
     ],
     "compileOnSave": true,
     "atom": {
