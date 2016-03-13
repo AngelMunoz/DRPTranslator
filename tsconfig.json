@@ -9,9 +9,12 @@
     "files": [
         "src/index.ts",
         "tests/index.test.ts",
-        "typings/chai/chai.d.ts",
-        "typings/mocha/mocha.d.ts",
-        "typings/tsd.d.ts"
+        "typings/browser.d.ts",
+        "typings/browser/ambient/chai/index.d.ts",
+        "typings/browser/ambient/mocha/index.d.ts",
+        "typings/main.d.ts",
+        "typings/main/ambient/chai/index.d.ts",
+        "typings/main/ambient/mocha/index.d.ts"
     ],
     "filesGlob": [
         "**/*.ts",
