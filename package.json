@@ -1,15 +1,16 @@
 {
   "name": "drptranslator",
-  "version": "1.0.0",
   "description": "A DNA-RNA-Protein translator library",
   "main": "dist/index.js",
   "typings": "dist/drptranslator.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git-cz",
+    "test": "mocha dist/tests/index.test.js -w",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AngelMunoz/DRPTranslator.git"
+    "url": "https://github.com/AngelMunoz/DRPTranslator.git"
   },
   "keywords": [
     "DNA",
@@ -23,5 +24,15 @@
   "bugs": {
     "url": "https://github.com/AngelMunoz/DRPTranslator/issues"
   },
-  "homepage": "https://github.com/AngelMunoz/DRPTranslator#readme"
+  "homepage": "https://github.com/AngelMunoz/DRPTranslator#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.4.5",
+    "semantic-release": "^4.3.5",
+    "cz-conventional-changelog":"1.1.5",
+    "commitizen":"2.7.2"
+    },
+    "czConfig:":{
+        "path": "node_modules/cz-conventional-changelog"
+    }
 }
