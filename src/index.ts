@@ -1,8 +1,8 @@
-export module DrpTranslator {
-    "use strict";
-    console.log('Hello World');
+import symbols = require('./symbols/Symbols');
+import codon = require("./symbols/Codon");
+import dnaTranslator = require('./translators/DnaTranslator');
+import rnaTranslator = require('./translators/RnaTranslator');
 
-    export function soup(str:string):string {
-        return `The soup has: ${str}`
-    }
-}
+var c =  new codon.Codon();
+
+var d = new rnaTranslator.RNATranslator();
