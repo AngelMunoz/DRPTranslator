@@ -2,7 +2,6 @@
 import symbols = require('../symbols/Codon');
 
 export class RNATranslator {
-    private a;
     public static transRNAtoDNA(dna:string):string {
         // TODO: Implement DNA -> DNA logic
         throw "Not implemented exception";
