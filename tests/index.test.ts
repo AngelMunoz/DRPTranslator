@@ -6,6 +6,7 @@ import codon = require('../src/symbols/Codon');
 import symbols = require("../src/symbols/Symbols");
 import dnatranslator = require("../src/translators/DnaTranslator");
 import rnatranslator = require("../src/translators/RnaTranslator");
+
 var expect = chai.expect;
 var should = chai.should();
 var RNA = symbols.RNA;
@@ -55,5 +56,21 @@ describe("DNATranslator Tests",() =>{
     var expectedRnaSeq = "UACGGUCAGCUAGC";
     var transRnaSeq = dnaTrans.tansDNAtoRNA(dnaSeq);
     transRnaSeq.should.equal(expectedRnaSeq);
+  });
+});
+
+describe("RNATranslator Tests",()=> {
+  it("transRNAtoDNA should return the matching DNA sequence",() =>{
+    var rnaTrans = new RNATranslator();
+    var rnaSeq = "AUGCUGCUUUAG";
+    var expectedRnaSeq = "TACGACGAAATC"
+    var transRnaSeq = rnaTrans.transRNAtoDNA(rnaSeq);
+    transRnaSeq.should.equal(expectedRnaSeq);
+  });
+  it("findStarts should return an array with the index of start sequences",() =>{
+
+  });
+  it("findStops should return an array with the index of stop sequences",() =>{
+
   });
 });

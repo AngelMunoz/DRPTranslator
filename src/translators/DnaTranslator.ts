@@ -20,14 +20,14 @@ export class DNATranslator {
         // TODO: Implement DNA -> DNA logic
         var dnaArr:DNA[] = [];
         for(var i = 0; i < dna.length;i++) {
-          dnaArr[i] = this.matchOpositeDnaBase(this.matchDnaBase(dna.charAt(i)));
+          dnaArr[i] = this.matchOpositeDnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
         }
         return this.dnaToString(dnaArr);
     }
     public tansDNAtoRNA(dna:string):string {
         var rnaArr:RNA[] = [];
         for(var i = 0; i < dna.length;i++) {
-          rnaArr[i] = this.matchOpositeRnaBase(this.matchDnaBase(dna.charAt(i)));
+          rnaArr[i] = this.matchOpositeRnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
         }
         return this.rnaToString(rnaArr);
 
