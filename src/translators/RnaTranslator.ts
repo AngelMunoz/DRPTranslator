@@ -27,10 +27,17 @@ export class RNATranslator {
     public findStarts(rna:string):number[] {
       var startsPos:number[] = [];
       var start = rna.indexOf('AUG');
+      if (start !== -1)
+        startsPos.push(start);
 
       while (start !== -1) {
         start = rna.toUpperCase().indexOf('AUG', start + 1);
-        startsPos.push(start);
+        if (start !== -1){
+          startsPos.push(start);
+        }
+        else {
+          break;
+        }
       }
 
       return startsPos;
@@ -43,17 +50,39 @@ export class RNATranslator {
       var stop2 = rna.indexOf('UAG');
       var stop3 = rna.indexOf('UGA');
 
+      if (stop1 !== -1)
+        stopsPos.push(stop1)
+      if (stop2 !== -1)
+        stopsPos.push(stop2)
+      if (stop3 !== -1)
+        stopsPos.push(stop3)
+
       while (stop1 !== -1) {
         stop1 = rna.toUpperCase().indexOf('UAA', stop1 + 1);
-        stopsPos.push(stop1);
+        if (stop1 !== -1){
+          stopsPos.push(stop1);
+        }
+        else {
+          break;
+        }
       }
       while (stop2 !== -1) {
         stop2 = rna.toUpperCase().indexOf('UAG', stop2 + 1);
-        stopsPos.push(stop1);
+        if (stop2 !== -1){
+          stopsPos.push(stop2);
+        }
+        else {
+          break;
+        }
       }
       while (stop3 !== -1) {
         stop3 = rna.toUpperCase().indexOf('UGA', stop3 + 1);
-        stopsPos.push(stop1);
+        if (stop3 !== -1){
+          stopsPos.push(stop3);
+        }
+        else {
+          break;
+        }
       }
       return stopsPos;
     }

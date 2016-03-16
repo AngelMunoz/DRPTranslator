@@ -63,14 +63,38 @@ describe("RNATranslator Tests",()=> {
   it("transRNAtoDNA should return the matching DNA sequence",() =>{
     var rnaTrans = new RNATranslator();
     var rnaSeq = "AUGCUGCUUUAG";
-    var expectedRnaSeq = "TACGACGAAATC"
+    var expectedRnaSeq = "TACGACGAAATC";
     var transRnaSeq = rnaTrans.transRNAtoDNA(rnaSeq);
     transRnaSeq.should.equal(expectedRnaSeq);
   });
   it("findStarts should return an array with the index of start sequences",() =>{
-
+    var rnaTrans = new RNATranslator();
+    var threeStarts = "AUGUUGCUUAUGAAUAUG"; // 0, 9, 15
+    var sevenStarts = "AUGUUGCUUAUGAAUAUGCUUAUAAUGAUGAUG"; // 0, 9, 15, 24, 27, 30
+    var oneStart = "AUGUUGCUUUGGAAUUCA"; // 0
+    var noneStart = "ACGUUCGAC";
+    var expectedThree = [0,9,15];
+    var expectedSeven = [0, 9, 15, 24, 27, 30];
+    var expectedOne = [0];
+    var expectedNone = [];
+    expect(rnaTrans.findStarts(threeStarts)).to.eql(expectedThree);
+    expect(rnaTrans.findStarts(sevenStarts)).to.eql(expectedSeven);
+    expect(rnaTrans.findStarts(oneStart)).to.eql(expectedOne);
+    expect(rnaTrans.findStarts(noneStart)).to.eql(expectedNone);
   });
   it("findStops should return an array with the index of stop sequences",() =>{
-
+    var rnaTrans = new RNATranslator();
+    var threeStops = "UAAUUGCUUUAGAAUUGA"; // 0, 9, 15
+    var fiveStops = "UAAUUGCUUUAGAAUUGACUUAUAUAAUAGUGA"; // 0, 9, 15, 24, 27,30
+    var oneStop = "UAAUUGCUUUGGAAUUCA"; // 0
+    var noneStop = "UACGCGCGCAUCCGCG"; // []
+    var expectedThree = [0,9,15];
+    var expectedFive = [0, 9, 15, 24, 27,30];
+    var expectedOne = [0];
+    var expectedNone = [];
+    expect(rnaTrans.findStops(threeStops)).to.eql(expectedThree);
+    expect(rnaTrans.findStops(fiveStops)).to.eql(expectedFive);
+    expect(rnaTrans.findStops(oneStop)).to.eql(expectedOne);
+    expect(rnaTrans.findStops(noneStop)).to.eql(expectedNone);
   });
 });
