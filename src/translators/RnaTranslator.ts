@@ -1,3 +1,5 @@
+/// <reference path="../symbols/Symbols.ts"/>
+/// <reference path="../symbols/Codon.ts"/>
 "use strict";
 import symbols = require('../symbols/Symbols');
 import codon = require("../symbols/Codon");
@@ -19,9 +21,10 @@ export class RNATranslator {
         return rnaStr.replace(/U/g, "T");
     }
 
-    public transRNAtoAA(dna:string):string {
-        // TODO: Implement DNA -> DNA logic
-        throw "Not implemented exception";
+    public transRNAtoAA(rna:string):string {
+        var cod = new Codon();
+        var codons = this.rnaToCodonArray(rna.toUpperCase());
+        return Codon.getCodonChain(codons);
     }
 
     public findStarts(rna:string):number[] {
@@ -87,11 +90,32 @@ export class RNATranslator {
       return stopsPos;
     }
 
-    private rnaToCodonArray(rna:string):Codon[] {
-        throw "Not implemented exception"
+    public rnaToCodonArray(rna:string):Codon[] {
+
+        var codons = [];
+        var rnaSeq = this.findSeqStartAndStop(rna);
+        var chopedSeq = rnaSeq.match(/.{3}/g);
+        chopedSeq.forEach((codStr) => {
+            var a = this.matchRnaBase(codStr.charAt(0));
+            var b = this.matchRnaBase(codStr.charAt(1));
+            var c = this.matchRnaBase(codStr.charAt(2));
+            var cod = new Codon(a,b,c);
+            codons.push(cod);
+        });
+        return codons;
     }
 
-    private matchRnaBase(b):RNA {
+    public findSeqStartAndStop(rna:string):string {
+      var starts:number[] = [];
+      var stops:number[] = [];
+      var seq:string;
+      starts = this.findStarts(rna);
+      stops = this.findStops(rna);
+      seq = rna.substring(starts[0] || 0, stops[0]+3 || rna.length);
+      return seq;
+    }
+
+    public matchRnaBase(b):RNA {
       switch(b) {
         case 'A':
           return RNA.A
@@ -105,7 +129,8 @@ export class RNATranslator {
           throw new TypeError("Invalid character");
       }
     }
-    private matchOpositeRnaBase(b:RNA):RNA {
+
+    public matchOpositeRnaBase(b:RNA):RNA {
       switch(b) {
         case RNA.A:
           return RNA.U;
@@ -120,7 +145,7 @@ export class RNATranslator {
       }
     }
 
-    private rnaToString(rna:RNA[]):string{
+    public rnaToString(rna:RNA[]):string{
       var dnaStr:string = "";
       rna.forEach((base) => {
         switch(base) {

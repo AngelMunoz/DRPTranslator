@@ -1,8 +1,8 @@
-import symbols = require('./symbols/Symbols');
-import codon = require("./symbols/Codon");
-import dnaTranslator = require('./translators/DnaTranslator');
-import rnaTranslator = require('./translators/RnaTranslator');
-
-var c =  new codon.Codon();
-
-var d = new rnaTranslator.RNATranslator();
+/// <reference path="./symbols/Symbols.ts"/>
+/// <reference path="./symbols/Codon.ts"/>
+/// <reference path="./translators/RnaTranslator.ts"/>
+/// <reference path="./translators/DnaTranslator.ts"/>
+export * from "./symbols/Symbols";
+export * from "./symbols/Codon";
+export * from "./translators/DnaTranslator";
+export * from "./translators/RnaTranslator";

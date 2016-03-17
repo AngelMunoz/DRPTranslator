@@ -36,6 +36,12 @@ describe('Codon Tests', () => {
         var expectedCod2 = "Leu";
         cod1AA2.should.equal(expectedCod2);
     });
+    it("codon.matchCodon should return a matching AA",()=>{
+        var cod1 = new Codon(RNA.G,RNA.C, RNA.C);
+        var cod1AA = Codon.matchCodon(cod1);
+        var expectedCod1 = "Ala";
+        cod1AA.should.equal(expectedCod1);
+    });
 });
 
 describe("DNATranslator Tests",() =>{
@@ -54,8 +60,15 @@ describe("DNATranslator Tests",() =>{
     var dnaTrans = new DNATranslator();
     var dnaSeq = "ATGCCAGTCGATCG";
     var expectedRnaSeq = "UACGGUCAGCUAGC";
-    var transRnaSeq = dnaTrans.tansDNAtoRNA(dnaSeq);
+    var transRnaSeq = dnaTrans.transDNAtoRNA(dnaSeq);
     transRnaSeq.should.equal(expectedRnaSeq);
+  });
+  it("transDNAtoAA should return the matching complementary AA sequence",() =>{
+    var dnaTrans = new DNATranslator();
+    var dnaSeq = "TACCCAGTCGATACT"; // rna AUG GGU CAG CUA UGA
+    var expectedAASeq = "Met-Gly-Gln-Leu-STOP";
+    var transRnaSeq = dnaTrans.transDNAtoAA(dnaSeq);
+    transRnaSeq.should.equal(expectedAASeq);
   });
 });
 
@@ -66,6 +79,16 @@ describe("RNATranslator Tests",()=> {
     var expectedRnaSeq = "TACGACGAAATC";
     var transRnaSeq = rnaTrans.transRNAtoDNA(rnaSeq);
     transRnaSeq.should.equal(expectedRnaSeq);
+  });
+  it("transRNAtoAA should return the matching AA sequence",()=>{
+      var rnaSeq = "AUGCUGCUUUAG";// Met-Leu-Leu-STOP
+      var rnaTrans = new RNATranslator();
+      var expectedArr = [new Codon(RNA.A, RNA.U, RNA.G),
+                                 new Codon(RNA.C, RNA.U, RNA.G),
+                                 new Codon(RNA.C, RNA.U, RNA.U),
+                                 new Codon(RNA.U, RNA.A, RNA.G)]
+      var rnaCodArray = rnaTrans.rnaToCodonArray(rnaSeq);
+      expect(rnaCodArray).to.eql(expectedArr);
   });
   it("findStarts should return an array with the index of start sequences",() =>{
     var rnaTrans = new RNATranslator();
@@ -96,5 +119,28 @@ describe("RNATranslator Tests",()=> {
     expect(rnaTrans.findStops(fiveStops)).to.eql(expectedFive);
     expect(rnaTrans.findStops(oneStop)).to.eql(expectedOne);
     expect(rnaTrans.findStops(noneStop)).to.eql(expectedNone);
+  });
+  it("rnaToCodonArray should return a matching RNA->Codon array",()=>{
+      var rnaTrans = new RNATranslator();
+      var dnaSeq = "AUGGGUCAGCUAUGA"; // rna TAC CCA GTC GAT ACT
+      var expectedAASeq = "Met-Gly-Gln-Leu-STOP";
+      var transRnaSeq = rnaTrans.transRNAtoAA(dnaSeq);
+      transRnaSeq.should.equal(expectedAASeq);
+  });
+  it("findSeqStartAndStop return a sequence beggining with a start and ending with a stop",()=>{
+      var rnaTrans = new RNATranslator();
+      var rnaSeqTT = "AUGCUGCUUUAG"; // true true 0,9
+      var rnaSeqTF = "AUGCUGCUUUUU"; // true false 0
+      var rnaSeqFT = "UGGCUGCUUUAG"; // false true 9
+      var rnaSeqFF = "UGGCUGCUUCCC"; // false false 0,0
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqTT)).to.include("AUG", "UAG");
+
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqTF)).to.include("AUG");
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqTF)).to.not.include("UAG");
+
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqFT)).to.include("UAG");
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqFT)).to.not.include("AUG");
+
+      expect(rnaTrans.findSeqStartAndStop(rnaSeqFF)).to.not.include("AUG", "UAG");
   });
 });

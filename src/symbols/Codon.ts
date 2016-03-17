@@ -1,3 +1,4 @@
+/// <reference path="./Symbols.ts"/>
 "use strict";
 import symbols = require('./Symbols');
 import RNA = symbols.RNA;
@@ -34,9 +35,9 @@ export class Codon {
 
 
     public setCodon(fp:RNA,sp:RNA,tp:RNA):void {
-        this._fp = fp;
-        this._sp = sp;
-        this._tp = tp;
+        this.fp = fp;
+        this.sp = sp;
+        this.tp = tp;
     }
 
     public static getCodonChain(codons:Codon[]):string {
@@ -53,7 +54,7 @@ export class Codon {
         return seq;
     }
 
-    static matchCodon(codon:Codon):string {
+    public static matchCodon(codon:Codon):string {
         var aa = "";
         switch(codon.fp) {
             case RNA.A:

@@ -1,3 +1,5 @@
+/// <reference path="../symbols/Symbols.ts"/>
+/// <reference path="./RnaTranslator.ts"/>
 "use strict";
 import rnatranslator = require("./RnaTranslator");
 import symbols = require("../symbols/Symbols");
@@ -17,14 +19,14 @@ export class DNATranslator {
     }
 
     public transDNAtoDNA(dna:string):string {
-        // TODO: Implement DNA -> DNA logic
         var dnaArr:DNA[] = [];
         for(var i = 0; i < dna.length;i++) {
           dnaArr[i] = this.matchOpositeDnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
         }
         return this.dnaToString(dnaArr);
     }
-    public tansDNAtoRNA(dna:string):string {
+
+    public transDNAtoRNA(dna:string):string {
         var rnaArr:RNA[] = [];
         for(var i = 0; i < dna.length;i++) {
           rnaArr[i] = this.matchOpositeRnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
@@ -32,12 +34,13 @@ export class DNATranslator {
         return this.rnaToString(rnaArr);
 
     }
+
     public transDNAtoAA(dna:string):string {
-        // TODO: Implement DNA -> DNA logic
-        throw "Not implemented Exception";
+        var rnaSeq = this.transDNAtoRNA(dna);
+        return this.rnaTranslator.transRNAtoAA(rnaSeq);
     }
 
-    private matchRnaBase(b):RNA {
+    public matchRnaBase(b):RNA {
       switch(b) {
         case 'A':
           return RNA.A
@@ -52,7 +55,7 @@ export class DNATranslator {
       }
     }
 
-    private matchOpositeRnaBase(b:DNA):RNA {
+    public matchOpositeRnaBase(b:DNA):RNA {
       switch(b) {
         case DNA.A:
           return RNA.U;
@@ -67,7 +70,7 @@ export class DNATranslator {
       }
     }
 
-    private rnaToString(dna:RNA[]):string{
+    public rnaToString(dna:RNA[]):string{
       var dnaStr:string = "";
       dna.forEach((base) => {
         switch(base) {
@@ -90,7 +93,7 @@ export class DNATranslator {
       return dnaStr;
     }
 
-    private matchDnaBase(b):DNA {
+    public matchDnaBase(b):DNA {
       switch(b) {
         case 'A':
           return DNA.A
@@ -105,7 +108,7 @@ export class DNATranslator {
       }
     }
 
-    private matchOpositeDnaBase(b:DNA):DNA {
+    public matchOpositeDnaBase(b:DNA):DNA {
       switch(b) {
         case DNA.A:
           return DNA.T;
@@ -120,7 +123,7 @@ export class DNATranslator {
       }
     }
 
-    private dnaToString(dna:DNA[]):string{
+    public dnaToString(dna:DNA[]):string{
       var dnaStr:string = "";
       dna.forEach((base) => {
         switch(base) {
