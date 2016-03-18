@@ -1,4 +1,3 @@
-dist/
 node_modules/
 typings/
 # We'll omit coverage for a while
