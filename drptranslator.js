@@ -1,1 +1,1 @@
-module.exports = require('./dist/scr/index');
+module.exports = require("drptranslator/dist/src/index");
