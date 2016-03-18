@@ -9,8 +9,6 @@
     "files": [
         "dist/src/index.d.ts",
         "dist/src/symbols/Codon.d.ts",
-        "dist/src/symbols/DNA.d.ts",
-        "dist/src/symbols/RNA.d.ts",
         "dist/src/symbols/Symbols.d.ts",
         "dist/src/translators/DnaTranslator.d.ts",
         "dist/src/translators/RnaTranslator.d.ts",

@@ -38,10 +38,6 @@ describe('Codon Tests', function () {
     });
 });
 describe("DNATranslator Tests", function () {
-    it("getRnatranslator should return an instance of RNATranslator class", function () {
-        var dnaTrans = new DNATranslator();
-        expect(dnaTrans.rnaTranslator).to.be.an.instanceof(RNATranslator);
-    });
     it("transDNAtoDNA should return the matching complementary DNA sequence", function () {
         var dnaTrans = new DNATranslator();
         var dnaSeq = "ATGCCAGTCGATCG";

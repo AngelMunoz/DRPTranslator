@@ -45,10 +45,6 @@ describe('Codon Tests', () => {
 });
 
 describe("DNATranslator Tests",() =>{
-  it("getRnatranslator should return an instance of RNATranslator class",() =>{
-    var dnaTrans = new DNATranslator();
-    expect(dnaTrans.rnaTranslator).to.be.an.instanceof(RNATranslator);
-  });
   it("transDNAtoDNA should return the matching complementary DNA sequence",() =>{
     var dnaTrans = new DNATranslator();
     var dnaSeq = "ATGCCAGTCGATCG";

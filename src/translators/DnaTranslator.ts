@@ -8,15 +8,6 @@ import RNA = symbols.RNA;
 import RNATranslator = rnatranslator.RNATranslator;
 
 export class DNATranslator {
-    private _rnaTranslator:RNATranslator;
-
-    constructor() {
-      this._rnaTranslator = new RNATranslator();
-    }
-
-    get rnaTranslator() {
-      return this._rnaTranslator
-    }
 
     public transDNAtoDNA(dna:string):string {
         var dnaArr:DNA[] = [];
@@ -36,8 +27,10 @@ export class DNATranslator {
     }
 
     public transDNAtoAA(dna:string):string {
+        var rnaTrans = new RNATranslator();
         var rnaSeq = this.transDNAtoRNA(dna);
-        return this.rnaTranslator.transRNAtoAA(rnaSeq);
+        var aaSeq = rnaTrans.transRNAtoAA(rnaSeq);
+        return aaSeq;
     }
 
     public matchRnaBase(b):RNA {

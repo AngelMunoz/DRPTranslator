@@ -6,15 +6,7 @@ var RNA = symbols.RNA;
 var RNATranslator = rnatranslator.RNATranslator;
 var DNATranslator = (function () {
     function DNATranslator() {
-        this._rnaTranslator = new RNATranslator();
     }
-    Object.defineProperty(DNATranslator.prototype, "rnaTranslator", {
-        get: function () {
-            return this._rnaTranslator;
-        },
-        enumerable: true,
-        configurable: true
-    });
     DNATranslator.prototype.transDNAtoDNA = function (dna) {
         var dnaArr = [];
         for (var i = 0; i < dna.length; i++) {
@@ -30,8 +22,10 @@ var DNATranslator = (function () {
         return this.rnaToString(rnaArr);
     };
     DNATranslator.prototype.transDNAtoAA = function (dna) {
+        var rnaTrans = new RNATranslator();
         var rnaSeq = this.transDNAtoRNA(dna);
-        return this.rnaTranslator.transRNAtoAA(rnaSeq);
+        var aaSeq = rnaTrans.transRNAtoAA(rnaSeq);
+        return aaSeq;
     };
     DNATranslator.prototype.matchRnaBase = function (b) {
         switch (b) {
