@@ -1,3 +1,5 @@
+/// <reference path="../symbols/Symbols.ts"/>
+/// <reference path="../symbols/Codon.ts"/>
 "use strict";
 var symbols = require('../symbols/Symbols');
 var codon = require("../symbols/Codon");

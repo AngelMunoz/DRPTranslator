@@ -7,12 +7,6 @@
         "target": "es5"
     },
     "files": [
-        "dist/src/index.d.ts",
-        "dist/src/symbols/Codon.d.ts",
-        "dist/src/symbols/Symbols.d.ts",
-        "dist/src/translators/DnaTranslator.d.ts",
-        "dist/src/translators/RnaTranslator.d.ts",
-        "dist/tests/index.test.d.ts",
         "src/index.ts",
         "src/symbols/Codon.ts",
         "src/symbols/Symbols.ts",
@@ -26,6 +20,7 @@
     "filesGlob": [
         "**/*.ts",
         "**/*.tsx",
+        "!dist/**",
         "!node_modules/**",
         "!typings/browser.d.ts",
         "!typings/browser/**"

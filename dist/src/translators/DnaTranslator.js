@@ -1,3 +1,5 @@
+/// <reference path="../symbols/Symbols.ts"/>
+/// <reference path="./RnaTranslator.ts"/>
 "use strict";
 var rnatranslator = require("./RnaTranslator");
 var symbols = require("../symbols/Symbols");
