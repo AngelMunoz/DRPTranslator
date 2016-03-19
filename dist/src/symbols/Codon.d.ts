@@ -1,4 +1,3 @@
-/// <reference path="Symbols.d.ts" />
 import symbols = require('./Symbols');
 import RNA = symbols.RNA;
 export declare class Codon {

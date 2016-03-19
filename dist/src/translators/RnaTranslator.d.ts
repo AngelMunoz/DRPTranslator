@@ -1,5 +1,3 @@
-/// <reference path="../symbols/Symbols.d.ts" />
-/// <reference path="../symbols/Codon.d.ts" />
 import symbols = require('../symbols/Symbols');
 import codon = require("../symbols/Codon");
 import RNA = symbols.RNA;

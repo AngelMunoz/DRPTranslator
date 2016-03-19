@@ -1,6 +1,4 @@
 /// <reference path="../typings/main.d.ts"/>
-/// <reference path="../drptranslator.d.ts"/>
-
 import chai = require("chai");
 import codon = require('../src/symbols/Codon');
 import symbols = require("../src/symbols/Symbols");

@@ -1,5 +1,3 @@
-/// <reference path="../symbols/Symbols.ts"/>
-/// <reference path="../symbols/Codon.ts"/>
 "use strict";
 import symbols = require('../symbols/Symbols');
 import codon = require("../symbols/Codon");

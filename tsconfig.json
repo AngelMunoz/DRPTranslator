@@ -7,7 +7,6 @@
         "target": "es5"
     },
     "files": [
-        "drptranslator.d.ts",
         "src/symbols/Codon.ts",
         "src/symbols/Symbols.ts",
         "src/translators/DnaTranslator.ts",
@@ -23,7 +22,8 @@
         "!dist/**",
         "!node_modules/**",
         "!typings/browser.d.ts",
-        "!typings/browser/**"
+        "!typings/browser/**",
+        "!drptranslator.d.ts"
     ],
     "compileOnSave": true,
     "atom": {

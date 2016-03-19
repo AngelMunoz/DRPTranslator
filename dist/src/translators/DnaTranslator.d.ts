@@ -1,5 +1,3 @@
-/// <reference path="../symbols/Symbols.d.ts" />
-/// <reference path="RnaTranslator.d.ts" />
 import symbols = require("../symbols/Symbols");
 import DNA = symbols.DNA;
 import RNA = symbols.RNA;

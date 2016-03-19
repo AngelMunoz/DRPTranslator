@@ -1,4 +1,3 @@
-/// <reference path="./Symbols.ts"/>
 "use strict";
 import symbols = require('./Symbols');
 import RNA = symbols.RNA;
