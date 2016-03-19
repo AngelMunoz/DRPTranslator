@@ -23,7 +23,10 @@ so you can install it as a dependancy
 
 `npm install --save drptranslator`
 
+
 ## Usage
+**Javascript**
+
 ```javascript
 var drptranslator = require('drptranslator/drptranslator');//this is a must
 var RNATranslator = drptranslator.RNATranslator;
@@ -32,6 +35,29 @@ var rnaTranslator = new RNATranslator();
 var aaSeq = rnaTranslator.transRNAtoAA("AUGGUCUGC");// Met-Val-Cys
 console.log(aaSeq);
 ```
+
+**Typescript**
+
+```javascript
+import * as drptranslator from "drptranslator/drptranslator";
+
+var RNATranslator = drptranslator.RNATranslator;
+var rnaTrans = new RNATranslator();
+
+var rnatodna = rnaTrans.transRNAtoDNA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+var arnAASeq = rnaTrans.transRNAtoAA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+console.log(arnAASeq, rnatodna);
+
+var DNATranslator = drptranslator.DNATranslator;
+var dnaTrans = new DNATranslator();
+var dnaAASeq = dnaTrans.transDNAtoAA("GGCTAGCTAGCGCTAGCTAGAACGAGT");
+console.log(dnaAASeq);
+
+// console output
+// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser GGCTAGCTAGCGCTAGCTAGAACGAGT
+// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser
+```
+
 
 ## What's next?
 * [ ] Document source files

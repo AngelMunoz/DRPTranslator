@@ -7,7 +7,7 @@
         "target": "es5"
     },
     "files": [
-        "src/index.ts",
+        "drptranslator.d.ts",
         "src/symbols/Codon.ts",
         "src/symbols/Symbols.ts",
         "src/translators/DnaTranslator.ts",

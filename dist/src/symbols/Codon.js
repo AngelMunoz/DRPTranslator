@@ -1,4 +1,3 @@
-/// <reference path="./Symbols.ts"/>
 "use strict";
 var symbols = require('./Symbols');
 var RNA = symbols.RNA;
@@ -77,7 +76,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.U:
                         switch (codon.tp) {
@@ -95,7 +94,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.G:
                         switch (codon.tp) {
@@ -113,7 +112,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.C:
                         switch (codon.tp) {
@@ -131,11 +130,11 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                } //second level
+                }
                 break;
             case RNA.U:
                 switch (codon.sp) {
@@ -155,7 +154,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.U:
                         switch (codon.tp) {
@@ -173,7 +172,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.G:
                         switch (codon.tp) {
@@ -191,7 +190,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.C:
                         switch (codon.tp) {
@@ -209,11 +208,11 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                } //second level
+                }
                 break;
             case RNA.G:
                 switch (codon.sp) {
@@ -233,7 +232,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.U:
                         switch (codon.tp) {
@@ -251,7 +250,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.G:
                         switch (codon.tp) {
@@ -269,7 +268,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.C:
                         switch (codon.tp) {
@@ -287,11 +286,11 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                } //second level
+                }
                 break;
             case RNA.C:
                 switch (codon.sp) {
@@ -311,7 +310,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.U:
                         switch (codon.tp) {
@@ -329,7 +328,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.G:
                         switch (codon.tp) {
@@ -347,7 +346,7 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     case RNA.C:
                         switch (codon.tp) {
@@ -365,15 +364,15 @@ var Codon = (function () {
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        } //third level
+                        }
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                } //second level
+                }
                 break;
             default:
                 throw new TypeError("Invalid character");
-        } //first level
+        }
         return aa;
     };
     return Codon;
