@@ -19,7 +19,7 @@ like a obtaining a *codon array*  or find the *first and last start and stop seq
 
 ## Install
 how can you consume this library? this is intended to be used in a nodejs environment
-so you can install it as a dependancy
+so you can install it as a dependency
 
 `npm install --save drptranslator`
 
@@ -60,8 +60,8 @@ console.log(dnaAASeq);
 
 
 ## What's next?
-* [ ] Document source files
-* [ ] Creating a website for its API docs
+* [x] Document source files
+* [x] Creating a website for its API docs
 * [ ] Adding more cappabilities
 * [ ] Publish a demo of an app using the library
 

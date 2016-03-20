@@ -5,8 +5,20 @@ import DNA = symbols.DNA;
 import RNA = symbols.RNA;
 import Codon = codon.Codon;
 
+/**
+ * Specialized class that allows to translate and transcript RNA sequences
+ */
 export class RNATranslator {
-
+    /**
+     * @param {String} RNA sequence to be translated into a complementary chain of DNA.
+     * @returns {String} The string returned is a complementary sequence of the provided.
+     * 
+     * ```
+     * UACGAU
+     * 
+     * ATGCTA
+     * ```
+     */
     public transRNAtoDNA(rna:string):string {
         var rnaArr:RNA[] = [];
         for(var i = 0; i < rna.length; i++) {
@@ -18,13 +30,30 @@ export class RNATranslator {
         var rnaStr = this.rnaToString(rnaArr);
         return rnaStr.replace(/U/g, "T");
     }
-
+    
+    /**
+     * @param {String} RNA sequence to be translated into a complementary chain of Aminoacids
+     * @returns {String} The string returned is a complementary sequence of the provided in the parameter
+     * 
+     * ```
+     * UACGAU
+     * 
+     * Tyr-Asp
+     * ```
+     */
     public transRNAtoAA(rna:string):string {
         var cod = new Codon();
         var codons = this.rnaToCodonArray(rna.toUpperCase());
         return Codon.getCodonChain(codons);
     }
-
+    
+    /**
+     * This method returns an array of positions where start sequences are
+     * this method could be useful if you need to identify if ther are any repeated start codons in a sequence
+     * or if you need to translate a sequence from different start codons.
+     * @param {String} String RNA sequence that will be searched for Start sequences.
+     * @return {Number []} Returns an array with the indexes of the start sequences ("AUG"); 
+     */
     public findStarts(rna:string):number[] {
       var startsPos:number[] = [];
       var start = rna.indexOf('AUG');
@@ -44,7 +73,12 @@ export class RNATranslator {
       return startsPos;
 
     }
-
+    
+    /**
+     * This method will find any stop codons in a RNA string, 
+     * @param {String} string containing RNA characters.
+     * @return {Number []} Returns an array with the indexes of the Stop codons ('UAA','UAG','UGA')
+     */
     public findStops(rna:string):number[] {
       var stopsPos:number[] = [];
       var stop1 = rna.indexOf('UAA');
@@ -87,7 +121,15 @@ export class RNATranslator {
       }
       return stopsPos;
     }
-
+    
+    /**
+     * Given a RNA string, this method will convert any codons available in the string
+     * however this method will try to translate a sequence from the first start codon and the first STOP codon
+     * Given `AGAUGCUGCUGCAGU` the string used for the translation will be `AUGCUGCUGCAGU`
+     * or Given `AGAUGGUAUAGCUGCUGCAGU` the string for translation will be `AUGGUAUAG`
+     * @param {String} RNA string that will be used for translation.
+     * @returns {Codon[]} Codon array that can be used to transcribe into an AA sequence
+     */
     public rnaToCodonArray(rna:string):Codon[] {
 
         var codons = [];
@@ -102,7 +144,16 @@ export class RNATranslator {
         });
         return codons;
     }
-
+    
+    /**
+     * Given a RNA string, this method will chop the RNA string
+     * into the First Start and the First STOP codon's available in the string
+     * Given `AGAUGCUGCUGCAGU` the string returned will be `AUGCUGCUGCAGU`
+     * or Given `AGAUGGUAUAGCUGCUGCAGU` the string returned will be `AUGGUAUAG`
+     * Given the case without any Start or STOP codons, the string will be unmodified.
+     * @param {String} RNA string that will be choped into a smaller sequence
+     * @return {String} Choped string containing only one Start codon and only one STOP codon.
+     */
     public findSeqStartAndStop(rna:string):string {
       var starts:number[] = [];
       var stops:number[] = [];
@@ -112,7 +163,12 @@ export class RNATranslator {
       seq = rna.substring(starts[0] || 0, stops[0]+3 || rna.length);
       return seq;
     }
-
+    
+    /**
+     * @param {String} One digit string (character) that is the base to be converted into the RNA enum.
+     * @returns {RNA} Returns the corresponding RNA base.
+     * 
+     */
     public matchRnaBase(b):RNA {
       switch(b) {
         case 'A':
@@ -127,7 +183,11 @@ export class RNATranslator {
           throw new TypeError("Invalid character");
       }
     }
-
+    
+    /**
+     * @param {DNA} DNA base which needs to be replaced.
+     * @returns {RNA} Returns a RNA base which is the oposite base of the DNA base provided.
+     */
     public matchOpositeRnaBase(b:RNA):RNA {
       switch(b) {
         case RNA.A:
@@ -142,7 +202,11 @@ export class RNATranslator {
           throw new TypeError("Invalid character");
       }
     }
-
+    
+    /**
+     * @param {RNA[]} RNA array containing the sequence to be parsed into a string.
+     * @returns {String} String containing the RNA sequence provided.
+     */
     public rnaToString(rna:RNA[]):string{
       var dnaStr:string = "";
       rna.forEach((base) => {
