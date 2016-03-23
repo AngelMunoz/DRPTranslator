@@ -7,15 +7,15 @@ import RNA = symbols.RNA;
  * @see https://en.wikipedia.org/wiki/Genetic_code#RNA_codon_table
  */
 export class Codon {
-    
+
     private _fp:RNA;
     private _sp:RNA;
     private _tp:RNA;
 
     /**
      * Codon constructor can optionaly accept it's RNA bases.
-     * 
-     * @param fp First base of the codon 
+     *
+     * @param fp First base of the codon
      * @param sp Second base of the codon
      * @param tp Third base of the codon
      * ```JavaScript
@@ -29,7 +29,7 @@ export class Codon {
         this._sp = sp;
         this._tp = tp;
     }
-    
+
     /**
      * @returns {RNA} returns an Enum of the type: See [[RNA]]
      */
@@ -51,7 +51,7 @@ export class Codon {
     set sp(base:RNA) {
         this._sp = base;
     }
-    
+
     get tp() {
         return this._tp;
     }
@@ -74,8 +74,8 @@ export class Codon {
         this.tp = tp;
     }
     /**
-     * Returns a string made with the matches of a [[Codon]] array 
-     * @static 
+     * Returns a string made with the matches of a [[Codon]] array
+     * @static
      * @return {String}
      * ```JavaScript
      * var cod1 = new Codon(RNA.A,RNA.U,RNA.G);
@@ -98,7 +98,7 @@ export class Codon {
         });
         return seq;
     }
-    
+
     /**
      * Matches a [[Codon]] object with a string that represents
      * the matching AminoAcid based on the Central Dogma of Molecular Biology

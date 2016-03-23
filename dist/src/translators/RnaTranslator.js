@@ -14,9 +14,16 @@ var RNATranslator = (function () {
         var rnaStr = this.rnaToString(rnaArr);
         return rnaStr.replace(/U/g, "T");
     };
-    RNATranslator.prototype.transRNAtoAA = function (rna) {
-        var cod = new Codon();
-        var codons = this.rnaToCodonArray(rna.toUpperCase());
+    RNATranslator.prototype.transRNAtoRNA = function (rna) {
+        var rnaArr = [];
+        for (var i = 0; i < rna.length; i++) {
+            rnaArr[i] = this.matchOpositeRnaBase(this.matchRnaBase(rna.toUpperCase().charAt(i)));
+        }
+        var tempRnaRes = this.rnaToString(rnaArr);
+        return tempRnaRes;
+    };
+    RNATranslator.prototype.transRNAtoAA = function (rna, starts, stops) {
+        var codons = this.rnaToCodonArray(rna.toUpperCase(), starts, stops);
         return Codon.getCodonChain(codons);
     };
     RNATranslator.prototype.findStarts = function (rna) {
@@ -75,10 +82,10 @@ var RNATranslator = (function () {
         }
         return stopsPos;
     };
-    RNATranslator.prototype.rnaToCodonArray = function (rna) {
+    RNATranslator.prototype.rnaToCodonArray = function (rna, starts, stops) {
         var _this = this;
         var codons = [];
-        var rnaSeq = this.findSeqStartAndStop(rna);
+        var rnaSeq = this.findSeqStartAndStop(rna, starts, stops);
         var chopedSeq = rnaSeq.match(/.{3}/g);
         chopedSeq.forEach(function (codStr) {
             var a = _this.matchRnaBase(codStr.charAt(0));
@@ -89,13 +96,28 @@ var RNATranslator = (function () {
         });
         return codons;
     };
-    RNATranslator.prototype.findSeqStartAndStop = function (rna) {
+    RNATranslator.prototype.findSeqStartAndStop = function (rna, start, stop) {
+        if (start === void 0) { start = false; }
+        if (stop === void 0) { stop = false; }
         var starts = [];
         var stops = [];
         var seq;
-        starts = this.findStarts(rna);
-        stops = this.findStops(rna);
-        seq = rna.substring(starts[0] || 0, stops[0] + 3 || rna.length);
+        if (start && stop) {
+            starts = this.findStarts(rna);
+            stops = this.findStops(rna);
+            seq = rna.substring(starts[0] || 0, stops[0] + 3 || rna.length);
+        }
+        else if (!start && stop) {
+            stops = this.findStops(rna);
+            seq = rna.substring(0, stops[0] + 3 || rna.length);
+        }
+        else if (start && !stop) {
+            starts = this.findStarts(rna);
+            seq = rna.substring(starts[0] || 0, rna.length);
+        }
+        else {
+            seq = rna;
+        }
         return seq;
     };
     RNATranslator.prototype.matchRnaBase = function (b) {

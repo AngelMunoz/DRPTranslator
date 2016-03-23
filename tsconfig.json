@@ -14,7 +14,8 @@
         "tests/index.test.ts",
         "typings/main.d.ts",
         "typings/main/ambient/chai/index.d.ts",
-        "typings/main/ambient/mocha/index.d.ts"
+        "typings/main/ambient/mocha/index.d.ts",
+        "typings/main/ambient/node/index.d.ts"
     ],
     "filesGlob": [
         "**/*.ts",

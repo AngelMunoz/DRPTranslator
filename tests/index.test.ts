@@ -78,9 +78,9 @@ describe("RNATranslator Tests",()=> {
       var rnaSeq = "AUGCUGCUUUAG";// Met-Leu-Leu-STOP
       var rnaTrans = new RNATranslator();
       var expectedArr = [new Codon(RNA.A, RNA.U, RNA.G),
-                                 new Codon(RNA.C, RNA.U, RNA.G),
-                                 new Codon(RNA.C, RNA.U, RNA.U),
-                                 new Codon(RNA.U, RNA.A, RNA.G)]
+                         new Codon(RNA.C, RNA.U, RNA.G),
+                         new Codon(RNA.C, RNA.U, RNA.U),
+                         new Codon(RNA.U, RNA.A, RNA.G)]
       var rnaCodArray = rnaTrans.rnaToCodonArray(rnaSeq);
       expect(rnaCodArray).to.eql(expectedArr);
   });
