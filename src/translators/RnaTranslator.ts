@@ -195,7 +195,7 @@ export class RNATranslator {
      * @param {String} RNA string that will be choped into a smaller sequence
      * @param {Boolean} Starts, tells the function if the sequence should be scanned for start codons
      * @param {Boolean} Stops, tells the function if the sequence should be scanned for stop codons
-     * @return {String} Choped string containing only one Start codon and only one STOP codon.
+     * @return {String} Choped string containing the rna sequence ready to translate or transcript
      */
     public findSeqStartAndStop(rna:string, start=false, stop=false):string {
       var starts:number[] = [];
