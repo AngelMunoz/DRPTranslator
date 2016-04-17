@@ -1,16 +1,25 @@
 /// <reference path="../typings/main.d.ts"/>
 import chai = require("chai");
-import codon = require('../src/symbols/Codon');
-import symbols = require("../src/symbols/Symbols");
-import dnatranslator = require("../src/translators/DnaTranslator");
-import rnatranslator = require("../src/translators/RnaTranslator");
-
 var expect = chai.expect;
 var should = chai.should();
-var RNA = symbols.RNA;
-var Codon = codon.Codon;
-var DNATranslator = dnatranslator.DNATranslator;
-var RNATranslator = rnatranslator.RNATranslator;
+import {Codon} from "../src/symbols/Codon";
+import {RNA} from "../src/symbols/Symbols";
+import {RNATranslator} from "../src/translators/RnaTranslator";
+import {DNATranslator} from "../src/translators/DnaTranslator";
+import {Matcher} from "../src/Matcher";
+
+describe("MatcherTests", () =>{
+  it("ParseRna Equivalent String to RNA", () => {
+    var expected = RNA.A;
+    var result = Matcher.parseRna("A");
+    result.should.equal(expected);
+  });
+  it("ParseRna Equivalent RNA to String", () => {
+    var expected = "A";
+    var result = Matcher.parseRna(RNA.A);
+    result.should.equal(expected);
+  });
+});
 
 describe('Codon Tests', () => {
     it('Codon.getCodonChain should return a matching codon string', () => {
@@ -20,24 +29,24 @@ describe('Codon Tests', () => {
         var cod3 = new Codon(RNA.G,RNA.C, RNA.C);
         var codArr = [cod1,cod2,cod3];
         var rnaSeq = Codon.getCodonChain(codArr);
-        var expectedSeq = "STOP-Leu-Ala";
+        var expectedSeq = "STOP-LEU-ALA";
         rnaSeq.should.equal(expectedSeq);
     });
     it("codon.setCodon should set a new codon",() => {
         // codon.setCodon(fp:RNA,sp:RNA,tp:RNA);
         var cod1 = new Codon(RNA.G,RNA.C, RNA.C);
         var cod1AA = Codon.matchCodon(cod1);
-        var expectedCod1 = "Ala";
+        var expectedCod1 = "ALA";
         cod1AA.should.equal(expectedCod1);
         cod1.setCodon(RNA.U,RNA.U, RNA.A);
         var cod1AA2 = Codon.matchCodon(cod1);
-        var expectedCod2 = "Leu";
+        var expectedCod2 = "LEU";
         cod1AA2.should.equal(expectedCod2);
     });
     it("codon.matchCodon should return a matching AA",()=>{
         var cod1 = new Codon(RNA.G,RNA.C, RNA.C);
         var cod1AA = Codon.matchCodon(cod1);
-        var expectedCod1 = "Ala";
+        var expectedCod1 = "ALA";
         cod1AA.should.equal(expectedCod1);
     });
 });
@@ -60,7 +69,7 @@ describe("DNATranslator Tests",() =>{
   it("transDNAtoAA should return the matching complementary AA sequence",() =>{
     var dnaTrans = new DNATranslator();
     var dnaSeq = "TACCCAGTCGATACT"; // rna AUG GGU CAG CUA UGA
-    var expectedAASeq = "Met-Gly-Gln-Leu-STOP";
+    var expectedAASeq = "MET-GLY-GLN-LEU-STOP";
     var transRnaSeq = dnaTrans.transDNAtoAA(dnaSeq);
     transRnaSeq.should.equal(expectedAASeq);
   });
@@ -75,7 +84,7 @@ describe("RNATranslator Tests",()=> {
     transRnaSeq.should.equal(expectedRnaSeq);
   });
   it("transRNAtoAA should return the matching AA sequence",()=>{
-      var rnaSeq = "AUGCUGCUUUAG";// Met-Leu-Leu-STOP
+      var rnaSeq = "AUGCUGCUUUAG";// MET-LEU-LEU-STOP
       var rnaTrans = new RNATranslator();
       var expectedArr = [new Codon(RNA.A, RNA.U, RNA.G),
                          new Codon(RNA.C, RNA.U, RNA.G),
@@ -117,7 +126,7 @@ describe("RNATranslator Tests",()=> {
   it("rnaToCodonArray should return a matching RNA->Codon array",()=>{
       var rnaTrans = new RNATranslator();
       var dnaSeq = "AUGGGUCAGCUAUGA"; // rna TAC CCA GTC GAT ACT
-      var expectedAASeq = "Met-Gly-Gln-Leu-STOP";
+      var expectedAASeq = "MET-GLY-GLN-LEU-STOP";
       var transRnaSeq = rnaTrans.transRNAtoAA(dnaSeq);
       transRnaSeq.should.equal(expectedAASeq);
   });

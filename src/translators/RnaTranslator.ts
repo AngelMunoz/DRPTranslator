@@ -1,9 +1,6 @@
 "use strict";
-import symbols = require('../symbols/Symbols');
-import codon = require("../symbols/Codon");
-import DNA = symbols.DNA;
-import RNA = symbols.RNA;
-import Codon = codon.Codon;
+import {Codon} from "../symbols/Codon";
+import {RNA, DNA} from "../symbols/Symbols";
 
 /**
  * Specialized class that allows to translate and transcript RNA sequences

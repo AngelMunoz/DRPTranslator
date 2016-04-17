@@ -1,9 +1,8 @@
 "use strict";
-import rnatranslator = require("./RnaTranslator");
-import symbols = require("../symbols/Symbols");
-import DNA = symbols.DNA;
-import RNA = symbols.RNA;
-import RNATranslator = rnatranslator.RNATranslator;
+import {RNATranslator} from "./RnaTranslator";
+import {RNA, DNA} from "../symbols/Symbols";
+
+
 /**
  * Specialized class that allows to translate and transcript DNA sequences
  */
