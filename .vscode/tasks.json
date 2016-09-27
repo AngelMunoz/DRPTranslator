@@ -1,0 +1,72 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "npm",
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "install",
+            "args": [
+                "install"
+            ]
+        },
+        {
+            "taskName": "update",
+            "args": [
+                "update"
+            ]
+        },
+        {
+            "taskName": "build",
+            "args": [
+                "run",
+                "build"
+            ]
+        },
+        {
+            "taskName": "commit",
+            "args": [
+                "run",
+                "commit"
+            ]
+        },
+        {
+            "taskName": "test",
+            "args": [
+                "run",
+                "test:single"
+            ]
+        },
+        {
+            "taskName": "test:watch",
+            "args": [
+                "run",
+                "test:watch"
+            ]
+        },
+        {
+            "taskName": "install:deps",
+            "args": [
+                "run",
+                "install:deps"
+            ]
+        },
+        {
+            "taskName": "semantic-release",
+            "args": [
+                "run",
+                "semantic-release"
+            ]
+        },
+        {
+            "taskName": "devSetup",
+            "args": [
+                "run",
+                "devSetup"
+            ]
+        }
+    ]
+}

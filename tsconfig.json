@@ -4,30 +4,11 @@
         "module": "commonjs",
         "charset": "UTF-8",
         "outDir": "dist",
-        "target": "es5"
+        "target": "es6"
     },
-    "files": [
-        "src/symbols/Codon.ts",
-        "src/symbols/Symbols.ts",
-        "src/translators/DnaTranslator.ts",
-        "src/translators/RnaTranslator.ts",
-        "tests/index.test.ts",
-        "typings/main.d.ts",
-        "typings/main/ambient/chai/index.d.ts",
-        "typings/main/ambient/mocha/index.d.ts",
-        "typings/main/ambient/node/index.d.ts"
+    "include": [
+        "src",
+        "tests"
     ],
-    "filesGlob": [
-        "**/*.ts",
-        "**/*.tsx",
-        "!dist/**",
-        "!node_modules/**",
-        "!typings/browser.d.ts",
-        "!typings/browser/**",
-        "!drptranslator.d.ts"
-    ],
-    "compileOnSave": true,
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    "compileOnSave": true
 }
