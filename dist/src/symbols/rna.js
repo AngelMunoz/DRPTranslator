@@ -1,24 +1,24 @@
-
 "use strict";
 /**
  * Enumerable that represents the RNA bases
  * @see https://en.wikipedia.org/wiki/RNA#Stucture
  */
-export enum RNA {
+(function (RNA) {
     /**
      * Adenine
      */
-    A,
+    RNA[RNA["A"] = 0] = "A";
     /**
      * Uracil
      */
-    U,
+    RNA[RNA["U"] = 1] = "U";
     /**
      * Guanine
      */
-    G,
+    RNA[RNA["G"] = 2] = "G";
     /**
      * Cytosine
      */
-    C
-}
+    RNA[RNA["C"] = 3] = "C";
+})(exports.RNA || (exports.RNA = {}));
+var RNA = exports.RNA;

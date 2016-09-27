@@ -1,24 +1,22 @@
-
-"use strict";
 /**
  * Enumerable that represents the RNA bases
  * @see https://en.wikipedia.org/wiki/RNA#Stucture
  */
-export enum RNA {
+export declare enum RNA {
     /**
      * Adenine
      */
-    A,
+    A = 0,
     /**
      * Uracil
      */
-    U,
+    U = 1,
     /**
      * Guanine
      */
-    G,
+    G = 2,
     /**
      * Cytosine
      */
-    C
+    C = 3,
 }

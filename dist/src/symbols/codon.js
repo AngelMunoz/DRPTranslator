@@ -1,15 +1,11 @@
-import { RNA } from './rna'
+"use strict";
+const rna_1 = require('./rna');
 /**
  * A class that represents a codon object
  * a codon must have 3 bases to be able to be converted into an aminoacid
  * @see https://en.wikipedia.org/wiki/Genetic_code#RNA_codon_table
  */
-export class Codon {
-
-    private _fp: RNA;
-    private _sp: RNA;
-    private _tp: RNA;
-
+class Codon {
     /**
      * Codon constructor can optionaly accept it's RNA bases.
      *
@@ -22,19 +18,18 @@ export class Codon {
      * var cod = new Codon();
      * ```
      */
-    constructor(fp?: RNA, sp?: RNA, tp?: RNA) {
+    constructor(fp, sp, tp) {
         this._fp = fp;
         this._sp = sp;
         this._tp = tp;
     }
-
     /**
      * @returns {RNA} returns an Enum of the type: See [[RNA]]
      */
     get fp() {
         return this._fp;
     }
-    set fp(base: RNA) {
+    set fp(base) {
         this._fp = base;
     }
     /**
@@ -46,27 +41,25 @@ export class Codon {
     /**
      * @returns {RNA} returns an Enum of the type: See [[RNA]]
      */
-    set sp(base: RNA) {
+    set sp(base) {
         this._sp = base;
     }
-
     get tp() {
         return this._tp;
     }
     /**
      * @return {RNA} returns an Enum of the type: See [[RNA]]
      */
-    set tp(base: RNA) {
+    set tp(base) {
         this._tp = base;
     }
-
     /**
      * Sets a new codon with the suplemented parameters
      * @param fp [[RNA]] Base
      * @param sp [[RNA]] Base
      * @param tp [[RNA]] Base
      */
-    public setCodon(fp: RNA, sp: RNA, tp: RNA): void {
+    setCodon(fp, sp, tp) {
         this.fp = fp;
         this.sp = sp;
         this.tp = tp;
@@ -83,8 +76,7 @@ export class Codon {
      * console.log(aaSeq); // Met-STOP
      * ```
      */
-    public static getCodonChain(codons: Codon[]): string {
-
+    static getCodonChain(codons) {
         var seq = "";
         codons.forEach((codon) => {
             if (codons.indexOf(codon) === codons.length - 1) {
@@ -96,7 +88,6 @@ export class Codon {
         });
         return seq;
     }
-
     /**
      * Matches a [[Codon]] object with a string that represents
      * the matching AminoAcid based on the Central Dogma of Molecular Biology
@@ -108,324 +99,325 @@ export class Codon {
      * console.log(Codon.matchCodon(cod)); // Met
      * ```
      */
-    public static matchCodon(codon: Codon): string {
+    static matchCodon(codon) {
         var aa = "";
         switch (codon.fp) {
-            case RNA.A:
+            case rna_1.RNA.A:
                 switch (codon.sp) {
-                    case RNA.A:
+                    case rna_1.RNA.A:
                         switch (codon.tp) {
-                            case RNA.A: // AAA
+                            case rna_1.RNA.A:
                                 aa = "Lys";
                                 break;
-                            case RNA.U: // AAU
+                            case rna_1.RNA.U:
                                 aa = "Asn";
                                 break;
-                            case RNA.G: // AAG
+                            case rna_1.RNA.G:
                                 aa = "Lys";
                                 break;
-                            case RNA.C: // AAC
+                            case rna_1.RNA.C:
                                 aa = "Asn";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.U:
+                    case rna_1.RNA.U:
                         switch (codon.tp) {
-                            case RNA.A: // AUA
+                            case rna_1.RNA.A:
                                 aa = "Ile";
                                 break;
-                            case RNA.U: // AUU
+                            case rna_1.RNA.U:
                                 aa = "Ile";
                                 break;
-                            case RNA.G: // AUG
+                            case rna_1.RNA.G:
                                 aa = "Met";
                                 break;
-                            case RNA.C: // AUC
+                            case rna_1.RNA.C:
                                 aa = "Ile";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.G:
+                    case rna_1.RNA.G:
                         switch (codon.tp) {
-                            case RNA.A: // AGA
+                            case rna_1.RNA.A:
                                 aa = "Arg";
                                 break;
-                            case RNA.U: // AGU
+                            case rna_1.RNA.U:
                                 aa = "Ser";
                                 break;
-                            case RNA.G: // AGG
+                            case rna_1.RNA.G:
                                 aa = "Arg";
                                 break;
-                            case RNA.C: // AGC
+                            case rna_1.RNA.C:
                                 aa = "Ser";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.C:
+                    case rna_1.RNA.C:
                         switch (codon.tp) {
-                            case RNA.A: // ACA
+                            case rna_1.RNA.A:
                                 aa = "Thr";
                                 break;
-                            case RNA.U: // ACU
+                            case rna_1.RNA.U:
                                 aa = "Thr";
                                 break;
-                            case RNA.G: // ACG
+                            case rna_1.RNA.G:
                                 aa = "Thr";
                                 break;
-                            case RNA.C: // ACC
+                            case rna_1.RNA.C:
                                 aa = "Thr";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                }//second level
+                } //second level
                 break;
-            case RNA.U:
+            case rna_1.RNA.U:
                 switch (codon.sp) {
-                    case RNA.A:
+                    case rna_1.RNA.A:
                         switch (codon.tp) {
-                            case RNA.A: // UAA
+                            case rna_1.RNA.A:
                                 aa = "STOP";
                                 break;
-                            case RNA.U: // UAU
+                            case rna_1.RNA.U:
                                 aa = "Tyr";
                                 break;
-                            case RNA.G: // UAG
+                            case rna_1.RNA.G:
                                 aa = "STOP";
                                 break;
-                            case RNA.C: // UAC
+                            case rna_1.RNA.C:
                                 aa = "Tyr";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.U:
+                    case rna_1.RNA.U:
                         switch (codon.tp) {
-                            case RNA.A: // UUA
+                            case rna_1.RNA.A:
                                 aa = "Leu";
                                 break;
-                            case RNA.U: // UUU
+                            case rna_1.RNA.U:
                                 aa = "Phe";
                                 break;
-                            case RNA.G: // UUG
+                            case rna_1.RNA.G:
                                 aa = "Leu";
                                 break;
-                            case RNA.C: // UUC
+                            case rna_1.RNA.C:
                                 aa = "Phe";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.G:
+                    case rna_1.RNA.G:
                         switch (codon.tp) {
-                            case RNA.A: // UGA
+                            case rna_1.RNA.A:
                                 aa = "STOP";
                                 break;
-                            case RNA.U: // UGU
+                            case rna_1.RNA.U:
                                 aa = "Cys";
                                 break;
-                            case RNA.G: // UGG
+                            case rna_1.RNA.G:
                                 aa = "Trp";
                                 break;
-                            case RNA.C: // UGC
+                            case rna_1.RNA.C:
                                 aa = "Cys";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.C:
+                    case rna_1.RNA.C:
                         switch (codon.tp) {
-                            case RNA.A: // UCA
+                            case rna_1.RNA.A:
                                 aa = "Ser";
                                 break;
-                            case RNA.U: // UCU
+                            case rna_1.RNA.U:
                                 aa = "Ser";
                                 break;
-                            case RNA.G: // UCG
+                            case rna_1.RNA.G:
                                 aa = "Ser";
                                 break;
-                            case RNA.C: // UCC
+                            case rna_1.RNA.C:
                                 aa = "Ser";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                }//second level
+                } //second level
                 break;
-            case RNA.G:
+            case rna_1.RNA.G:
                 switch (codon.sp) {
-                    case RNA.A:
+                    case rna_1.RNA.A:
                         switch (codon.tp) {
-                            case RNA.A: // GAA
+                            case rna_1.RNA.A:
                                 aa = "Glu";
                                 break;
-                            case RNA.U: // GAU
+                            case rna_1.RNA.U:
                                 aa = "Asp";
                                 break;
-                            case RNA.G: // GAG
+                            case rna_1.RNA.G:
                                 aa = "Glu";
                                 break;
-                            case RNA.C: // GAC
+                            case rna_1.RNA.C:
                                 aa = "Asp";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.U:
+                    case rna_1.RNA.U:
                         switch (codon.tp) {
-                            case RNA.A: // GUA
+                            case rna_1.RNA.A:
                                 aa = "Val";
                                 break;
-                            case RNA.U: // GUU
+                            case rna_1.RNA.U:
                                 aa = "Val";
                                 break;
-                            case RNA.G: // GUG
+                            case rna_1.RNA.G:
                                 aa = "Val";
                                 break;
-                            case RNA.C: // GUC
+                            case rna_1.RNA.C:
                                 aa = "Val";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.G:
+                    case rna_1.RNA.G:
                         switch (codon.tp) {
-                            case RNA.A: // GGA
+                            case rna_1.RNA.A:
                                 aa = "Gly";
                                 break;
-                            case RNA.U: // GGU
+                            case rna_1.RNA.U:
                                 aa = "Gly";
                                 break;
-                            case RNA.G: // GGG
+                            case rna_1.RNA.G:
                                 aa = "Gly";
                                 break;
-                            case RNA.C: // GGC
+                            case rna_1.RNA.C:
                                 aa = "Gly";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.C:
+                    case rna_1.RNA.C:
                         switch (codon.tp) {
-                            case RNA.A: // GCA
+                            case rna_1.RNA.A:
                                 aa = "Ala";
                                 break;
-                            case RNA.U: // GCU
+                            case rna_1.RNA.U:
                                 aa = "Ala";
                                 break;
-                            case RNA.G: // GCG
+                            case rna_1.RNA.G:
                                 aa = "Ala";
                                 break;
-                            case RNA.C: // GCC
+                            case rna_1.RNA.C:
                                 aa = "Ala";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                }//second level
+                } //second level
                 break;
-            case RNA.C:
+            case rna_1.RNA.C:
                 switch (codon.sp) {
-                    case RNA.A:
+                    case rna_1.RNA.A:
                         switch (codon.tp) {
-                            case RNA.A: // CAA
+                            case rna_1.RNA.A:
                                 aa = "Gln";
                                 break;
-                            case RNA.U: // CAU
+                            case rna_1.RNA.U:
                                 aa = "His";
                                 break;
-                            case RNA.G: // CAG
+                            case rna_1.RNA.G:
                                 aa = "Gln";
                                 break;
-                            case RNA.C: // CAC
+                            case rna_1.RNA.C:
                                 aa = "His";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.U:
+                    case rna_1.RNA.U:
                         switch (codon.tp) {
-                            case RNA.A: // CUA
+                            case rna_1.RNA.A:
                                 aa = "Leu";
                                 break;
-                            case RNA.U: // CUU
+                            case rna_1.RNA.U:
                                 aa = "Leu";
                                 break;
-                            case RNA.G: // CUG
+                            case rna_1.RNA.G:
                                 aa = "Leu";
                                 break;
-                            case RNA.C: // CUC
+                            case rna_1.RNA.C:
                                 aa = "Leu";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.G:
+                    case rna_1.RNA.G:
                         switch (codon.tp) {
-                            case RNA.A: // CGA
+                            case rna_1.RNA.A:
                                 aa = "Arg";
                                 break;
-                            case RNA.U: // CGU
+                            case rna_1.RNA.U:
                                 aa = "Arg";
                                 break;
-                            case RNA.G: // CGG
+                            case rna_1.RNA.G:
                                 aa = "Arg";
                                 break;
-                            case RNA.C: // CGC
+                            case rna_1.RNA.C:
                                 aa = "Arg";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
-                    case RNA.C:
+                    case rna_1.RNA.C:
                         switch (codon.tp) {
-                            case RNA.A: // CCA
+                            case rna_1.RNA.A:
                                 aa = "Pro";
                                 break;
-                            case RNA.U: // CCU
+                            case rna_1.RNA.U:
                                 aa = "Pro";
                                 break;
-                            case RNA.G: // CCG
+                            case rna_1.RNA.G:
                                 aa = "Pro";
                                 break;
-                            case RNA.C: // CCC
+                            case rna_1.RNA.C:
                                 aa = "Pro";
                                 break;
                             default:
                                 throw new TypeError("Invalid character");
-                        }//third level
+                        } //third level
                         break;
                     default:
                         throw new TypeError("Invalid character");
-                }//second level
+                } //second level
                 break;
             default:
                 throw new TypeError("Invalid character");
-        }//first level
+        } //first level
         return aa;
     }
 }
+exports.Codon = Codon;
