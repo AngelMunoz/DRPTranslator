@@ -1,0 +1,18 @@
+// Place your settings in this file to overwrite default and user settings.                                                                                                      
+{                                                                                                                                                                                
+    "editor.renderIndentGuides": true,                                                                                                                                           
+    "editor.rulers": [                                                                                                                                                           
+        80,                                                                                                                                                                      
+        120                                                                                                                                                                      
+    ],                                                                                                                                                                           
+    "editor.tabSize": 2,                                                                                                                                                         
+    "editor.insertSpaces": true,                                                                                                                                                 
+    "typescript.tsdk": "node_modules/typescript/lib",                                                                                                                            
+    "standard.options": {                                                                                                                                                        
+        "globals": [],                                                                                                                                                                       
+        "ignore": [                                                                                                                                                              
+            "node_modules/**",
+            "dist/**"                                                                                                                                                   
+        ]                                                                                                                                                                        
+    }                                                                                                                                                                            
+}

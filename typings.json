@@ -1,10 +1,9 @@
 {
   "name": "drptranslator",
-  "version": false,
   "dependencies": {},
-  "ambientDependencies": {
-    "chai": "registry:dt/chai#3.4.0+20160216071402",
-    "mocha": "registry:dt/mocha#2.2.5+20151023103246",
-    "node": "registry:dt/node#4.0.0+20160317120654"
+  "globalDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "mocha": "registry:dt/mocha#2.2.5+20160720003353",
+    "node": "registry:dt/node#6.0.0+20160925070332"
   }
 }

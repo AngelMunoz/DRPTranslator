@@ -1,10 +1,12 @@
 {
   "name": "drptranslator",
   "description": "A DNA-RNA-Protein translator library",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
+    "install:deps": "npm install && node_modules/.bin/typings install",
+    "build": "node_modules/.bin/tsc -p .",
     "commit": "git-cz",
-    "test": "mocha dist/tests/index.test.js -w",
+    "test:watch": "mocha dist/tests/index.test.js -w",
     "test:single": "node_modules/.bin/istanbul cover -x *.test.js --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec dist/tests/index.test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "devSetup": "node_modules/.bin/typings install && node_modules/.bin/tsc -p . &&  npm run test:single"
@@ -34,8 +36,9 @@
     "istanbul": "0.4.2",
     "mocha": "2.4.5",
     "semantic-release": "^4.3.5",
-    "typescript": "1.8.7",
-    "typings": "0.7.8"
+    "standard": "^8.2.0",
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0"
   },
   "config": {
     "commitizen": {
