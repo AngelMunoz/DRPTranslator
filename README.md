@@ -28,7 +28,7 @@ so you can install it as a dependency
 **Javascript**
 
 ```javascript
-var drptranslator = require('drptranslator/drptranslator');//this is a must
+var drptranslator = require('drptranslator');//this is a must
 var RNATranslator = drptranslator.RNATranslator;
 var rnaTranslator = new RNATranslator();
 
