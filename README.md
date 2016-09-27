@@ -39,7 +39,7 @@ console.log(aaSeq);
 **Typescript**
 
 ```javascript
-import * as drptranslator from "drptranslator/drptranslator";
+import * as drptranslator from "drptranslator";
 
 var RNATranslator = drptranslator.RNATranslator;
 var rnaTrans = new RNATranslator();
