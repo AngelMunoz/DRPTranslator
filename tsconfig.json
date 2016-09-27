@@ -3,12 +3,12 @@
         "declaration": true,
         "module": "commonjs",
         "charset": "UTF-8",
-        "outDir": "dist",
+        "outDir": "bin",
         "target": "es6"
     },
     "include": [
-        "src",
-        "tests"
+        "src/**/*.ts",
+        "tests/**/*.ts"
     ],
     "compileOnSave": true
 }
