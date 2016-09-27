@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DRPTranslator</title>
+	<title>drptranslator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">DRPTranslator</a>
+					<a href="index.html" class="title">drptranslator</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -57,7 +57,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> DRPTranslator</h1>
+			<h1> drptranslator</h1>
 		</div>
 	</div>
 </header>
@@ -65,6 +65,13 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<h1 id="-notice-"><strong>NOTICE</strong></h1>
+				<p>Since version 1.2.0 This library requires you to use <strong>node 6+</strong></p>
+				<h3 id="update">Update</h3>
+				<p>while I haven&#39;t had any time to work on this, I plan to start Soon(ish) with the version 2
+					of this library which means it will be rewritten from scratch and I hope to include many options more,
+					this is a package I develop on my free time so if you think you can help me on this
+				feel free to do so!</p>
 				<h1 id="hello-everyone-">Hello everyone!</h1>
 				<p>Welcome to DNA-RNA-Protein Translator or if you may drptranslator
 				I have a very bad problem of naming but don&#39;t let that stop you!</p>
@@ -87,7 +94,7 @@
 				<p><code>npm install --save drptranslator</code></p>
 				<h2 id="usage">Usage</h2>
 				<p><strong>Javascript</strong></p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> drptranslator = <span class="hljs-built_in">require</span>(<span class="hljs-string">'drptranslator/drptranslator'</span>);<span class="hljs-comment">//this is a must</span>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> drptranslator = <span class="hljs-built_in">require</span>(<span class="hljs-string">'drptranslator'</span>);<span class="hljs-comment">//this is a must</span>
 <span class="hljs-keyword">var</span> RNATranslator = drptranslator.RNATranslator;
 <span class="hljs-keyword">var</span> rnaTranslator = <span class="hljs-keyword">new</span> RNATranslator();
 
@@ -95,7 +102,7 @@
 <span class="hljs-built_in">console</span>.log(aaSeq);
 </code></pre>
 				<p><strong>Typescript</strong></p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> drptranslator <span class="hljs-keyword">from</span> <span class="hljs-string">"drptranslator/drptranslator"</span>;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> drptranslator <span class="hljs-keyword">from</span> <span class="hljs-string">"drptranslator"</span>;
 
 <span class="hljs-keyword">var</span> RNATranslator = drptranslator.RNATranslator;
 <span class="hljs-keyword">var</span> rnaTrans = <span class="hljs-keyword">new</span> RNATranslator();
@@ -131,16 +138,22 @@
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_symbols_codon_.html">"symbols/<wbr>Codon"</a>
+						<a href="modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_symbols_symbols_.html">"symbols/<wbr>Symbols"</a>
+						<a href="modules/_symbols_codon_.html">"symbols/codon"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_translators_dnatranslator_.html">"translators/<wbr>Dna<wbr>Translator"</a>
+						<a href="modules/_symbols_dna_.html">"symbols/dna"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_translators_rnatranslator_.html">"translators/<wbr>Rna<wbr>Translator"</a>
+						<a href="modules/_symbols_rna_.html">"symbols/rna"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_translators_dna_translator_.html">"translators/dna.translator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_translators_rna_translator_.html">"translators/rna.translator"</a>
 					</li>
 				</ul>
 			</nav>
