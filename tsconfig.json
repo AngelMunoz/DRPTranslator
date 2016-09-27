@@ -3,7 +3,7 @@
         "declaration": true,
         "module": "commonjs",
         "charset": "UTF-8",
-        "outDir": "bin",
+        "outDir": "dist",
         "target": "es6"
     },
     "include": [
