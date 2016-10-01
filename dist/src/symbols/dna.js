@@ -3,21 +3,22 @@
  * Enumerable that represents the DNA bases
  * @see https://en.wikipedia.org/wiki/DNA#Properties
  */
-export enum DNA {
+(function (DNA) {
     /**
      * Adenine
      */
-    A,
+    DNA[DNA["A"] = 0] = "A";
     /**
      * Thymine
      */
-    T,
+    DNA[DNA["T"] = 1] = "T";
     /**
      * Guanine
      */
-    G,
+    DNA[DNA["G"] = 2] = "G";
     /**
      * Cytosine
      */
-    C
-}
+    DNA[DNA["C"] = 3] = "C";
+})(exports.DNA || (exports.DNA = {}));
+var DNA = exports.DNA;

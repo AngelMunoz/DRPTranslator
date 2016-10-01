@@ -1,3 +1,10 @@
+# **NOTICE**
+Since version 1.2.0 This library requires you to use **node 6+**
+### Update
+while I haven't had any time to work on this, I plan to start Soon(ish) with the version 2
+of this library which means it will be rewritten from scratch and I hope to include many options more,
+this is a package I develop on my free time so if you think you can help me on this
+feel free to do so!
 # Hello everyone!
 Welcome to DNA-RNA-Protein Translator or if you may drptranslator
 I have a very bad problem of naming but don't let that stop you!
@@ -28,7 +35,7 @@ so you can install it as a dependency
 **Javascript**
 
 ```javascript
-var drptranslator = require('drptranslator/drptranslator');//this is a must
+var drptranslator = require('drptranslator');//this is a must
 var RNATranslator = drptranslator.RNATranslator;
 var rnaTranslator = new RNATranslator();
 
@@ -39,7 +46,7 @@ console.log(aaSeq);
 **Typescript**
 
 ```javascript
-import * as drptranslator from "drptranslator/drptranslator";
+import * as drptranslator from "drptranslator";
 
 var RNATranslator = drptranslator.RNATranslator;
 var rnaTrans = new RNATranslator();

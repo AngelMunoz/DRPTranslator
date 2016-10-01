@@ -2,7 +2,8 @@
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(require("./symbols/Symbols"));
-__export(require("./symbols/Codon"));
-__export(require("./translators/DnaTranslator"));
-__export(require("./translators/RnaTranslator"));
+__export(require('./symbols/rna'));
+__export(require('./symbols/dna'));
+__export(require('./symbols/codon'));
+__export(require('./translators/dna.translator'));
+__export(require('./translators/rna.translator'));

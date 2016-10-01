@@ -1,23 +1,22 @@
-"use strict";
 /**
  * Enumerable that represents the DNA bases
  * @see https://en.wikipedia.org/wiki/DNA#Properties
  */
-export enum DNA {
+export declare enum DNA {
     /**
      * Adenine
      */
-    A,
+    A = 0,
     /**
      * Thymine
      */
-    T,
+    T = 1,
     /**
      * Guanine
      */
-    G,
+    G = 2,
     /**
      * Cytosine
      */
-    C
+    C = 3,
 }
