@@ -1,4 +1,3 @@
-
 "use strict";
 import { RNATranslator } from './rna.translator';
 import { RNA } from '../symbols/rna';
