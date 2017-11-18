@@ -69,8 +69,8 @@ console.log(dnaAASeq);
 ## What's next?
 * [x] Document source files
 * [x] Creating a website for its API docs
+* [ ] Publish a demo of an app using the library
 * [ ] Adding more cappabilities
-* [x] Publish a demo of an app using the library Take a look [Here](https://github.com/AngelMunoz/Transcriptase) and [Here](https://github.com/AngelMunoz/TranscriptaseWeb)
 
 ### Suggestions
 If you have an idea or you want to help to make this something bigger, raise an issue :) I'm glad to check out your ideas!
