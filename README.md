@@ -1,10 +1,9 @@
+[![Build Status](https://travis-ci.org/AngelMunoz/DRPTranslator.svg?branch=master)](https://travis-ci.org/AngelMunoz/DRPTranslator)
+
 # **NOTICE**
 Since version 1.2.0 This library requires you to use **node 6+**
-### Update
-while I haven't had any time to work on this, I plan to start Soon(ish) with the version 2
-of this library which means it will be rewritten from scratch and I hope to include many options more,
-this is a package I develop on my free time so if you think you can help me on this
-feel free to do so!
+
+
 # Hello everyone!
 Welcome to DNA-RNA-Protein Translator or if you may drptranslator
 I have a very bad problem of naming but don't let that stop you!
@@ -32,37 +31,47 @@ so you can install it as a dependency
 
 
 ## Usage
+Tou can [Test it Here](https://npm.runkit.com/drptranslator)
 **Javascript**
 
 ```javascript
-var drptranslator = require('drptranslator');//this is a must
-var RNATranslator = drptranslator.RNATranslator;
-var rnaTranslator = new RNATranslator();
+const { RNATranslator, DNATranslator } = require("drptranslator");
 
-var aaSeq = rnaTranslator.transRNAtoAA("AUGGUCUGC");// Met-Val-Cys
-console.log(aaSeq);
+const rTranslator = new RNATranslator();
+const dTranslator = new DNATranslator();
+const rnaAaSeq = rTranslator.transRNAtoAA("AUGGUCUGC");
+const dnaAaSeq = dTranslator.transDNAtoAA("ATGGTCTGC");
+const rnatodna = rTranslator.transRNAtoDNA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+const arnAASeq = rTranslator.transRNAtoAA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+const dnaAASeq = dTranslator.transDNAtoAA("GGCTAGCTAGCGCTAGCTAGAACGAGT");
+
+console.log(rnaAaSeq, dnaAaSeq, arnAASeq, rnatodna, dnaAASeq);
+// "Met-Val-Cys"
+// "Tyr-Gln-Thr"
+// "Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser"
+// "GGCTAGCTAGCGCTAGCTAGAACGAGT"
+// "Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser"
 ```
 
 **Typescript**
 
 ```javascript
-import * as drptranslator from "drptranslator";
+import { RNATranslator, DNATranslator }  from "drptranslator";
 
-var RNATranslator = drptranslator.RNATranslator;
-var rnaTrans = new RNATranslator();
+const rTranslator = new RNATranslator();
+const dTranslator = new DNATranslator();
+const rnaAaSeq = rTranslator.transRNAtoAA("AUGGUCUGC");
+const dnaAaSeq = dTranslator.transDNAtoAA("ATGGTCTGC");
+const rnatodna = rTranslator.transRNAtoDNA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+const arnAASeq = rTranslator.transRNAtoAA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
+const dnaAASeq = dTranslator.transDNAtoAA("GGCTAGCTAGCGCTAGCTAGAACGAGT");
 
-var rnatodna = rnaTrans.transRNAtoDNA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
-var arnAASeq = rnaTrans.transRNAtoAA("CCGAUCGAUCGCGAUCGAUCUUGCUCA");
-console.log(arnAASeq, rnatodna);
-
-var DNATranslator = drptranslator.DNATranslator;
-var dnaTrans = new DNATranslator();
-var dnaAASeq = dnaTrans.transDNAtoAA("GGCTAGCTAGCGCTAGCTAGAACGAGT");
-console.log(dnaAASeq);
-
-// console output
-// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser GGCTAGCTAGCGCTAGCTAGAACGAGT
-// Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser
+console.log(rnaAaSeq, dnaAaSeq, arnAASeq, rnatodna, dnaAASeq);
+// "Met-Val-Cys"
+// "Tyr-Gln-Thr"
+// "Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser"
+// "GGCTAGCTAGCGCTAGCTAGAACGAGT"
+// "Pro-Ile-Asp-Arg-Asp-Arg-Ser-Cys-Ser"
 ```
 
 
