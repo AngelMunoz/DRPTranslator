@@ -1,14 +1,12 @@
 {
     "compilerOptions": {
+        "target": "es5",
         "declaration": true,
-        "module": "commonjs",
-        "charset": "UTF-8",
-        "outDir": "dist",
-        "target": "es6"
-    },
-    "include": [
-        "src/**/*.ts",
-        "tests/**/*.ts"
-    ],
-    "compileOnSave": true
+        "outDir": "dist/",
+        "lib": [
+            "es6"
+        ],
+        "outFile": "drptranslator.js",
+        "charset": "utf-8"
+    }
 }
