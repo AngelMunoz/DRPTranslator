@@ -1,6 +1,6 @@
 {
   "name": "drptranslator",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A DNA-RNA-Protein translator library",
   "main": "dist/index.js",
   "typings": "dist/index",
