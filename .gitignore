@@ -3,3 +3,4 @@ typings/
 # We'll omit coverage for a while
 coverage/
 npm-debug.log
+.fusebox
