@@ -4,14 +4,10 @@
   "main": "dist/src/index.js",
   "typings": "dist/src/index",
   "scripts": {
-    "install:deps": "npm install && node_modules/.bin/typings install",
-    "build": "node_modules/.bin/tsc -p .",
+    "build": "node fuse.js build",
     "commit": "git-cz",
-    "test:watch": "mocha dist/tests/index.test.js -w",
-    "test:single": "node_modules/.bin/istanbul cover -x *.test.js --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec dist/tests/index.test.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "devSetup": "node_modules/.bin/typings install && node_modules/.bin/tsc -p . &&  npm run test:single",
-    "postinstall": "npm run devSetup"
+    "test:single": "node fuse.js test",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -31,16 +27,17 @@
   },
   "homepage": "https://github.com/AngelMunoz/DRPTranslator#readme",
   "devDependencies": {
-    "chai": "3.5.0",
-    "commitizen": "2.7.2",
-    "cz-conventional-changelog": "1.1.5",
-    "ghooks": "1.0.3",
-    "istanbul": "0.4.2",
-    "mocha": "2.4.5",
-    "semantic-release": "^4.3.5",
-    "standard": "^8.2.0",
-    "typescript": "^2.0.3",
-    "typings": "^1.4.0"
+    "@types/node": "^9.4.5",
+    "chai": "4.1.2",
+    "commitizen": "2.9.6",
+    "cz-conventional-changelog": "2.1.0",
+    "ghooks": "2.0.2",
+    "istanbul": "0.4.5",
+    "mocha": "5.0.0",
+    "semantic-release": "12.4.1",
+    "typescript": "2.7.1",
+    "fuse-box": "3.1.3",
+    "fuse-test-runner": "^1.0.16"
   },
   "config": {
     "commitizen": {
