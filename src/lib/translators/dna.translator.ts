@@ -1,7 +1,6 @@
 import { RNA } from '../symbols/rna';
 import { DNA } from '../symbols/dna';
 import { RNATranslator } from './rna.translator';
-"use strict";
 
 /**
  * Specialized class that allows to translate and transcript DNA sequences

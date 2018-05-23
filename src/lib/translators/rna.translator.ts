@@ -1,6 +1,5 @@
 import { RNA } from '../symbols/rna';
 import { Codon } from '../symbols/codon';
-"use strict";
 
 /**
  * Specialized class that allows to translate and transcript RNA sequences
@@ -227,7 +226,7 @@ export class RNATranslator {
    * @returns {RNA} Returns the corresponding RNA base.
    *
    */
-  public matchRnaBase(b): RNA {
+  public matchRnaBase(b: string): RNA {
     switch (b) {
       case 'A':
         return RNA.A;

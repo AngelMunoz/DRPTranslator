@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node fuse.js build",
     "commit": "git-cz",
-    "test:single": "node fuse.js test",
+    "test": "node fuse.js test",
     "semantic-release": "semantic-release --branch pre && npm publish && semantic-release  --branch master post"
   },
   "repository": {
@@ -45,7 +45,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run test:single"
+      "pre-commit": "npm test"
     }
   }
 }

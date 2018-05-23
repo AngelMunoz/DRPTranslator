@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Enumerable that represents the DNA bases
  * @see https://en.wikipedia.org/wiki/DNA#Properties
