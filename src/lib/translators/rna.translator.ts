@@ -226,7 +226,7 @@ export class RNATranslator {
    * @returns {RNA} Returns the corresponding RNA base.
    *
    */
-  public matchRnaBase(b): RNA {
+  public matchRnaBase(b: string): RNA {
     switch (b) {
       case 'A':
         return RNA.A;
