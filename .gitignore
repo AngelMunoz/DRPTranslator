@@ -4,3 +4,4 @@ typings/
 coverage/
 npm-debug.log
 .fusebox
+.idea/
