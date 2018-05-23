@@ -1,5 +1,3 @@
-
-"use strict";
 /**
  * Enumerable that represents the RNA bases
  * @see https://en.wikipedia.org/wiki/RNA#Stucture

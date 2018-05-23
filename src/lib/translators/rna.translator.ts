@@ -1,6 +1,5 @@
 import { RNA } from '../symbols/rna';
 import { Codon } from '../symbols/codon';
-"use strict";
 
 /**
  * Specialized class that allows to translate and transcript RNA sequences
