@@ -57,9 +57,9 @@ export class Codon {
         return CodonMap.has(codon.toString()) ? CodonMap.get(codon.toString()) : undefined;
     }
 
-    public fp: RNA;
-    public sp: RNA;
-    public tp: RNA;
+    public fp: RNA | "A" | "U" | "C" | "G";
+    public sp: RNA | "A" | "U" | "C" | "G";
+    public tp: RNA | "A" | "U" | "C" | "G";
 
     /**
      * Codon constructor can optionaly accept it's RNA bases.
@@ -73,7 +73,10 @@ export class Codon {
      * var cod = new Codon();
      * ```
      */
-    constructor(fp?: RNA, sp?: RNA, tp?: RNA) {
+    constructor(
+        fp?: RNA | "A" | "U" | "C" | "G",
+        sp?: RNA | "A" | "U" | "C" | "G",
+        tp?: RNA | "A" | "U" | "C" | "G") {
         this.fp = fp;
         this.sp = sp;
         this.tp = tp;
@@ -81,11 +84,14 @@ export class Codon {
 
     /**
      * Sets a new codon with the suplemented parameters
-     * @param {RNA} fp Base
-     * @param {RNA} sp Base
-     * @param {RNA} tp Base
+     * @param {RNA | "A" | "U" | "C"| "G"} fp Base
+     * @param {RNA | "A" | "U" | "C"| "G"} sp Base
+     * @param {RNA | "A" | "U" | "C"| "G"} tp Base
      */
-    public setCodon(fp: RNA, sp: RNA, tp: RNA): void {
+    public setCodon(
+        fp: RNA | "A" | "U" | "C" | "G",
+        sp: RNA | "A" | "U" | "C" | "G",
+        tp: RNA | "A" | "U" | "C" | "G"): void {
         this.fp = fp;
         this.sp = sp;
         this.tp = tp;
