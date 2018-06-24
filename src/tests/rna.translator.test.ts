@@ -1,12 +1,11 @@
 import { should } from "fuse-test-runner";
-import { Codon } from '../lib/symbols/codon';
-import { RNA } from '../lib/symbols/rna';
-import { RNATranslator } from '../lib/translators/rna.translator';
-
+import { Codon } from "../lib/symbols/codon";
+import { RNA } from "../lib/symbols/rna";
+import { RNATranslator } from "../lib/translators/rna.translator";
 
 export class RNATranslatorTest {
 
-  "transRNAtoDNA should return the matching DNA sequence"() {
+  public "transRNAtoDNA should return the matching DNA sequence"() {
     const rnaTrans = new RNATranslator();
     const rnaSeq = "AUGCUGCUUUAG";
     const expectedRnaSeq = "TACGACGAAATC";
@@ -14,20 +13,20 @@ export class RNATranslatorTest {
     should(transRnaSeq).equal(expectedRnaSeq);
   }
 
-  "transRNAtoAA should return the matching AA sequence"() {
-    const rnaSeq = "AUGCUGCUUUAG";// Met-Leu-Leu-STOP
+  public "transRNAtoAA should return the matching AA sequence"() {
+    const rnaSeq = "AUGCUGCUUUAG"; // Met-Leu-Leu-STOP
     const rnaTrans = new RNATranslator();
     const expectedArr = [
       new Codon(RNA.A, RNA.U, RNA.G),
       new Codon(RNA.C, RNA.U, RNA.G),
       new Codon(RNA.C, RNA.U, RNA.U),
-      new Codon(RNA.U, RNA.A, RNA.G)
+      new Codon(RNA.U, RNA.A, RNA.G),
     ];
     const rnaCodArray = rnaTrans.rnaToCodonArray(rnaSeq);
     should(rnaCodArray).deepEqual(expectedArr);
   }
 
-  "findStarts should return an array with the index of start sequences"() {
+  public "findStarts should return an array with the index of start sequences"() {
 
     const rnaTrans = new RNATranslator();
     const threeStarts = "AUGUUGCUUAUGAAUAUG"; // 0, 9, 15
@@ -44,7 +43,7 @@ export class RNATranslatorTest {
     should(rnaTrans.findStarts(noneStart)).deepEqual(expectedNone);
   }
 
-  "findStops should return an array with the index of stop sequences"() {
+  public "findStops should return an array with the index of stop sequences"() {
     const rnaTrans = new RNATranslator();
     const threeStops = "UAAUUGCUUUAGAAUUGA"; // 0, 9, 15
     const fiveStops = "UAAUUGCUUUAGAAUUGACUUAUAUAAUAGUGA"; // 0, 9, 15, 24, 27,30
@@ -60,7 +59,7 @@ export class RNATranslatorTest {
     should(rnaTrans.findStops(noneStop)).deepEqual(expectedNone);
   }
 
-  "rnaToCodonArray should return a matching RNA->Codon array"() {
+  public "rnaToCodonArray should return a matching RNA->Codon array"() {
     const rnaTrans = new RNATranslator();
     const dnaSeq = "AUGGGUCAGCUAUGA"; // rna TAC CCA GTC GAT ACT
     const expectedAASeq = "Met-Gly-Gln-Leu-STOP";
@@ -68,7 +67,7 @@ export class RNATranslatorTest {
     should(transRnaSeq).equal(expectedAASeq);
   }
 
-  "findSeqStartAndStop return a sequence beggining with a start and ending with a stop"() {
+  public "findSeqStartAndStop return a sequence beggining with a start and ending with a stop"() {
     const rnaTrans = new RNATranslator();
     const rnaSeqTT = "AUGCUGCUUUAG"; // true true 0,9
     const rnaSeqTF = "AUGCUGCUUUUU"; // true false 0
@@ -96,4 +95,3 @@ export class RNATranslatorTest {
   }
 
 }
-

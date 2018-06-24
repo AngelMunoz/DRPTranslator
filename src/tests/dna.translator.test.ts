@@ -1,19 +1,19 @@
 import { should } from "fuse-test-runner";
-import { Codon } from '../lib/symbols/codon';
-import { RNA } from '../lib/symbols/rna';
-import { DNATranslator } from '../lib/translators/dna.translator';
+import { Codon } from "../lib/symbols/codon";
+import { RNA } from "../lib/symbols/rna";
+import { DNATranslator } from "../lib/translators/dna.translator";
 
 export class DNATranslatorTest {
 
-  "transDNAtoDNA should return the matching complementary DNA sequence"() {
+  public "transDNAtoDNA should return the matching complementary DNA sequence"() {
     const dnaTrans = new DNATranslator();
     const dnaSeq = "ATGCCAGTCGATCG";
     const expectedDnaSeq = "TACGGTCAGCTAGC";
-    const transDnaSeq = dnaTrans.transDNAtoDNA(dnaSeq);
+    const transDnaSeq = dnaTrans.transDNAtoOpositeDNA(dnaSeq);
     should(transDnaSeq).equal(expectedDnaSeq);
   }
 
-  "transDNAtoRNA should return the matching complementary RNA sequence"() {
+  public "transDNAtoRNA should return the matching complementary RNA sequence"() {
     const dnaTrans = new DNATranslator();
     const dnaSeq = "ATGCCAGTCGATCG";
     const expectedRnaSeq = "UACGGUCAGCUAGC";
@@ -21,7 +21,7 @@ export class DNATranslatorTest {
     should(transRnaSeq).equal(expectedRnaSeq);
   }
 
-  "transDNAtoAA should return the matching complementary AA sequence"() {
+  public "transDNAtoAA should return the matching complementary AA sequence"() {
     const dnaTrans = new DNATranslator();
     const dnaSeq = "TACCCAGTCGATACT"; // rna AUG GGU CAG CUA UGA
     const expectedAASeq = "Met-Gly-Gln-Leu-STOP";
