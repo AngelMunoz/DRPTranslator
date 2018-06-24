@@ -1,6 +1,6 @@
-import { RNA } from '../symbols/rna';
-import { DNA } from '../symbols/dna';
-import { RNATranslator } from './rna.translator';
+import { DNA } from "../symbols/dna";
+import { RNA } from "../symbols/rna";
+import { RNATranslator } from "./rna.translator";
 
 /**
  * Specialized class that allows to translate and transcript DNA sequences
@@ -8,86 +8,88 @@ import { RNATranslator } from './rna.translator';
 export class DNATranslator {
 
   /**
-   * @param {String} DNA sequence to be translated into a complementary chain of DNA.
-   * @returns {String} The string returned is a complementary sequence of the provided in the parameter.
-   * 
+   * @param {string} DNA sequence to be translated into a complementary chain of DNA.
+   * @returns {string} The string returned is a complementary sequence of the provided in the parameter.
+   *
    * ```
    * ATGCTA
-   * 
+   *
    * TACGAT
    * ```
    */
-  public transDNAtoDNA(dna: string): string {
-    var dnaArr: DNA[] = [];
-    for (var i = 0; i < dna.length; i++) {
-      dnaArr[i] = this.matchOpositeDnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
-    }
+  public transDNAtoOpositeDNA(dna: string): string {
+    const dnaArr = dna
+      // get uppercase string
+      .toUpperCase()
+      .split("")
+      // convert each letter in the string to RNA
+      .map((base) => this.matchOpositeDnaBase(this.matchDnaBase(base)));
     return this.dnaToString(dnaArr);
   }
 
   /**
-   * @param {String} DNA sequence to be translated into a complementary chain of RNA
-   * @returns {String} The string returned is a complementary sequence of the provided in the parameter
-   * 
+   * @param {string} dna sequence to be translated into a complementary chain of RNA
+   * @returns {string} The string returned is a complementary sequence of the provided in the parameter
+   *
    * ```
    * ATGCTA
-   * 
+   *
    * UACGAU
    * ```
    */
   public transDNAtoRNA(dna: string): string {
-    var rnaArr: RNA[] = [];
-    for (var i = 0; i < dna.length; i++) {
-      rnaArr[i] = this.matchOpositeRnaBase(this.matchDnaBase(dna.toUpperCase().charAt(i)));
-    }
+    const rnaArr = dna
+      // get uppercase string
+      .toUpperCase()
+      .split("")
+      // convert each letter in the string to RNA
+      .map((base) => this.matchOpositeRnaBase(this.matchDnaBase(base)));
     return this.rnaToString(rnaArr);
 
   }
 
   /**
-   * @param {String} DNA sequence to be translated into a complementary chain of Aminoacids
-   * @returns {String} The string returned is a complementary sequence of the provided in the parameter
-   * 
+   * @param {string} dna sequence to be translated into a complementary chain of Aminoacids
+   * @returns {string} The string returned is a complementary sequence of the provided in the parameter
+   *
    * ```
    * ATGCTA
-   * 
+   *
    * Tyr-Asp
    * ```
    */
   public transDNAtoAA(dna: string): string {
-    var rnaTrans = new RNATranslator();
-    var rnaSeq = this.transDNAtoRNA(dna);
-    var aaSeq = rnaTrans.transRNAtoAA(rnaSeq);
-    return aaSeq;
+    const rnaTrans = new RNATranslator();
+    const rnaSeq = this.transDNAtoRNA(dna);
+    return rnaTrans.transRNAtoAA(rnaSeq);
   }
 
-
   /**
-   * @param {String} One digit string (character) that is the base to be converted into the RNA enum.
+   * @param {string} base digit string (character) that is the base to be converted into the RNA enum.
    * @returns {RNA} Returns the corresponding RNA base.
-   * 
+   *
    */
-  public matchRnaBase(b): RNA {
-    switch (b) {
-      case 'A':
+  public matchRnaBase(base: string): RNA {
+    switch (base) {
+      case "A":
         return RNA.A;
-      case 'T':
+      case "T":
         return RNA.U;
-      case 'G':
+      case "G":
         return RNA.G;
-      case 'C':
+      case "C":
         return RNA.C;
       default:
-        throw new TypeError("Invalid character");
+        throw new TypeError(`Invalid character: ${base}`);
     }
   }
 
   /**
-   * @param {DNA} DNA base which needs to be replaced.
+   * @param {DNA} base base which needs to be replaced.
    * @returns {RNA} Returns a RNA base which is the oposite base of the DNA base provided.
    */
-  public matchOpositeRnaBase(b: DNA): RNA {
-    switch (b) {
+  public matchOpositeRnaBase(base: DNA): RNA {
+    switch (base) {
       case DNA.A:
         return RNA.U;
       case DNA.T:
@@ -97,63 +99,16 @@ export class DNATranslator {
       case DNA.C:
         return RNA.G;
       default:
-        throw new TypeError("Invalid character");
+        throw new TypeError(`Invalid character: ${base}`);
     }
   }
 
   /**
-   * @param {RNA[]} RNA array containing the sequence to be parsed into a string.
-   * @returns {String} String containing the RNA sequence provided.
+   * @param {DNA} base base which needs to be replaced
+   * @returns {RNA} Returns a RNA base which is the oposite base of the DNA base provided
    */
-  public rnaToString(dna: RNA[]): string {
-    var dnaStr: string = "";
-    dna.forEach((base) => {
-      switch (base) {
-        case RNA.A:
-          dnaStr += 'A';
-          break;
-        case RNA.U:
-          dnaStr += 'U';
-          break;
-        case RNA.G:
-          dnaStr += 'G';
-          break;
-        case RNA.C:
-          dnaStr += 'C';
-          break;
-        default:
-          throw new TypeError("Invalid character");
-      }
-    });
-    return dnaStr;
-  }
-
-  /**
-   * @param {String} One digit string (character) that is the base to be converted into the DNA enum
-   * @returns {DNA} Returns the corresponding DNA base
-   * 
-   */
-  public matchDnaBase(b): DNA {
-    switch (b) {
-      case 'A':
-        return DNA.A;
-      case 'T':
-        return DNA.T;
-      case 'G':
-        return DNA.G;
-      case 'C':
-        return DNA.C;
-      default:
-        throw new TypeError("Invalid character");
-    }
-  }
-
-  /**
-  * @param {DNA} DNA base which needs to be replaced
-  * @returns {RNA} Returns a RNA base which is the oposite base of the DNA base provided
-  */
-  public matchOpositeDnaBase(b: DNA): DNA {
-    switch (b) {
+  public matchOpositeDnaBase(base: DNA): DNA {
+    switch (base) {
       case DNA.A:
         return DNA.T;
       case DNA.T:
@@ -163,35 +118,44 @@ export class DNATranslator {
       case DNA.C:
         return DNA.G;
       default:
-        throw new TypeError("Invalid character");
+        throw new TypeError(`Invalid character: ${base}`);
     }
   }
 
   /**
-   * @param {DNA[]} RNA array containing the sequence to be parsed into a string.
-   * @returns {String} String containing the DNA sequence provided.
+   * @param {string} base digit string (character) that is the base to be converted into the DNA enum
+   * @returns {DNA} Returns the corresponding DNA base
+   *
    */
-  public dnaToString(dna: DNA[]): string {
-    var dnaStr: string = "";
-    dna.forEach((base) => {
-      switch (base) {
-        case DNA.A:
-          dnaStr += 'A';
-          break;
-        case DNA.T:
-          dnaStr += 'T';
-          break;
-        case DNA.G:
-          dnaStr += 'G';
-          break;
-        case DNA.C:
-          dnaStr += 'C';
-          break;
-        default:
-          throw new TypeError("Invalid character");
-      }
-    });
-    return dnaStr;
+  public matchDnaBase(base: string): DNA {
+    switch (base) {
+      case "A":
+        return DNA.A;
+      case "T":
+        return DNA.T;
+      case "G":
+        return DNA.G;
+      case "C":
+        return DNA.C;
+      default:
+        throw new TypeError(`Invalid character: ${base}`);
+    }
+  }
+
+  /**
+   * @param {RNA[]} rnaArray array containing the sequence to be parsed into a string.
+   * @returns {string} string containing the RNA sequence provided.
+   */
+  public rnaToString(rnaArray: RNA[]): string {
+    return rnaArray.join("");
+  }
+
+  /**
+   * @param {DNA[]} dnaArray array containing the sequence to be parsed into a string.
+   * @returns {string} string containing the DNA sequence provided.
+   */
+  public dnaToString(dnaArray: DNA[]): string {
+    return dnaArray.join("");
   }
 
 }

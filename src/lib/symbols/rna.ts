@@ -4,19 +4,19 @@
  */
 export enum RNA {
     /**
-     * Adenine
+     * @name Adenine
      */
-    A,
+    A = "A",
     /**
-     * Uracil
+     * @name Uracil
      */
-    U,
+    U = "U",
     /**
-     * Guanine
+     * @name Guanine
      */
-    G,
+    G = "G",
     /**
-     * Cytosine
+     * @name Cytosine
      */
-    C
+    C = "C",
 }

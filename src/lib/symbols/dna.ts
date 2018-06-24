@@ -4,19 +4,19 @@
  */
 export enum DNA {
     /**
-     * Adenine
+     * @name Adenine
      */
-    A,
+    A = "A",
     /**
-     * Thymine
+     * @name Thymine
      */
-    T,
+    T = "T",
     /**
-     * Guanine
+     * @name Guanine
      */
-    G,
+    G = "G",
     /**
-     * Cytosine
+     * @name Cytosine
      */
-    C
+    C = "C",
 }

@@ -1,5 +1,5 @@
-import { RNA } from '../symbols/rna';
-import { Codon } from '../symbols/codon';
+import { Codon } from "../symbols/codon";
+import { RNA } from "../symbols/rna";
 
 /**
  * Specialized class that allows to translate and transcript RNA sequences
@@ -16,17 +16,16 @@ export class RNATranslator {
    * ```
    */
   public transRNAtoDNA(rna: string): string {
-    var rnaArr: RNA[] = [];
-    for (var i = 0; i < rna.length; i++) {
+    const rnaArr: RNA[] = [];
+    for (let i = 0; i < rna.length; i++) {
       rnaArr[i] = this.matchOpositeRnaBase(
         this.matchRnaBase(
-          rna.toUpperCase().charAt(i)
+          rna.toUpperCase().charAt(i),
         ));
     }
-    var rnaStr = this.rnaToString(rnaArr);
+    const rnaStr = this.rnaToString(rnaArr);
     return rnaStr.replace(/U/g, "T");
   }
-
 
   /**
    * @param {String} RNA sequence to be translated into a complementary chain of RNA
@@ -39,15 +38,15 @@ export class RNATranslator {
    * ```
    */
   public transRNAtoRNA(rna: string): string {
-    var rnaArr: RNA[] = [];
-    for (var i = 0; i < rna.length; i++) {
+    const rnaArr: RNA[] = [];
+    for (let i = 0; i < rna.length; i++) {
       rnaArr[i] = this.matchOpositeRnaBase(
         this.matchRnaBase(
-          rna.toUpperCase().charAt(i)
-        )
+          rna.toUpperCase().charAt(i),
+        ),
       );
     }
-    var tempRnaRes = this.rnaToString(rnaArr);
+    const tempRnaRes = this.rnaToString(rnaArr);
     return tempRnaRes;
   }
 
@@ -68,7 +67,7 @@ export class RNATranslator {
    * ```
    */
   public transRNAtoAA(rna: string, starts?: boolean, stops?: boolean): string {
-    var codons = this.rnaToCodonArray(rna.toUpperCase(), starts, stops);
+    const codons = this.rnaToCodonArray(rna.toUpperCase(), starts, stops);
     return Codon.getCodonChain(codons);
   }
 
@@ -80,18 +79,17 @@ export class RNATranslator {
    * @return {Number []} Returns an array with the indexes of the start sequences ("AUG");
    */
   public findStarts(rna: string): number[] {
-    var startsPos: number[] = [];
-    var start = rna.indexOf('AUG');
+    const startsPos: number[] = [];
+    let start = rna.indexOf("AUG");
     if (start !== -1) {
       startsPos.push(start);
     }
 
     while (start !== -1) {
-      start = rna.toUpperCase().indexOf('AUG', start + 1);
+      start = rna.toUpperCase().indexOf("AUG", start + 1);
       if (start !== -1) {
         startsPos.push(start);
-      }
-      else {
+      } else {
         break;
       }
     }
@@ -106,10 +104,10 @@ export class RNATranslator {
    * @return {Number []} Returns an array with the indexes of the Stop codons ('UAA','UAG','UGA')
    */
   public findStops(rna: string): number[] {
-    var stopsPos: number[] = [];
-    var stop1 = rna.indexOf('UAA');
-    var stop2 = rna.indexOf('UAG');
-    var stop3 = rna.indexOf('UGA');
+    const stopsPos: number[] = [];
+    let stop1 = rna.indexOf("UAA");
+    let stop2 = rna.indexOf("UAG");
+    let stop3 = rna.indexOf("UGA");
 
     if (stop1 !== -1) {
       stopsPos.push(stop1);
@@ -122,29 +120,26 @@ export class RNATranslator {
     }
 
     while (stop1 !== -1) {
-      stop1 = rna.toUpperCase().indexOf('UAA', stop1 + 1);
+      stop1 = rna.toUpperCase().indexOf("UAA", stop1 + 1);
       if (stop1 !== -1) {
         stopsPos.push(stop1);
-      }
-      else {
+      } else {
         break;
       }
     }
     while (stop2 !== -1) {
-      stop2 = rna.toUpperCase().indexOf('UAG', stop2 + 1);
+      stop2 = rna.toUpperCase().indexOf("UAG", stop2 + 1);
       if (stop2 !== -1) {
         stopsPos.push(stop2);
-      }
-      else {
+      } else {
         break;
       }
     }
     while (stop3 !== -1) {
-      stop3 = rna.toUpperCase().indexOf('UGA', stop3 + 1);
+      stop3 = rna.toUpperCase().indexOf("UGA", stop3 + 1);
       if (stop3 !== -1) {
         stopsPos.push(stop3);
-      }
-      else {
+      } else {
         break;
       }
     }
@@ -163,14 +158,14 @@ export class RNATranslator {
    */
   public rnaToCodonArray(rna: string, starts?: boolean, stops?: boolean): Codon[] {
 
-    var codons = [];
-    var rnaSeq = this.findSeqStartAndStop(rna, starts, stops);
-    var chopedSeq = rnaSeq.match(/.{3}/g);
+    const codons = [];
+    const rnaSeq = this.findSeqStartAndStop(rna, starts, stops);
+    const chopedSeq = rnaSeq.match(/.{3}/g);
     chopedSeq.forEach((codStr) => {
-      var a = this.matchRnaBase(codStr.charAt(0));
-      var b = this.matchRnaBase(codStr.charAt(1));
-      var c = this.matchRnaBase(codStr.charAt(2));
-      var cod = new Codon(a, b, c);
+      const a = this.matchRnaBase(codStr.charAt(0));
+      const b = this.matchRnaBase(codStr.charAt(1));
+      const c = this.matchRnaBase(codStr.charAt(2));
+      const cod = new Codon(a, b, c);
       codons.push(cod);
     });
     return codons;
@@ -198,55 +193,52 @@ export class RNATranslator {
    * @return {String} Choped string containing the rna sequence ready to translate or transcript
    */
   public findSeqStartAndStop(rna: string, start = false, stop = false): string {
-    var starts: number[] = [];
-    var stops: number[] = [];
-    var seq: string;
+    let starts: number[] = [];
+    let stops: number[] = [];
+    let seq: string;
 
     if (start && stop) {
       starts = this.findStarts(rna);
       stops = this.findStops(rna);
       seq = rna.substring(starts[0] || 0, stops[0] + 3 || rna.length);
-    }
-    else if (!start && stop) {
+    } else if (!start && stop) {
       stops = this.findStops(rna);
       seq = rna.substring(0, stops[0] + 3 || rna.length);
-    }
-    else if (start && !stop) {
+    } else if (start && !stop) {
       starts = this.findStarts(rna);
       seq = rna.substring(starts[0] || 0, rna.length);
-    }
-    else {
+    } else {
       seq = rna;
     }
     return seq;
   }
 
   /**
-   * @param {String} One digit string (character) that is the base to be converted into the RNA enum.
+   * @param {String} base digit string (character) that is the base to be converted into the RNA enum.
    * @returns {RNA} Returns the corresponding RNA base.
    *
    */
-  public matchRnaBase(b: string): RNA {
-    switch (b) {
-      case 'A':
+  public matchRnaBase(base: string): RNA {
+    switch (base) {
+      case "A":
         return RNA.A;
-      case 'U':
+      case "U":
         return RNA.U;
-      case 'G':
+      case "G":
         return RNA.G;
-      case 'C':
+      case "C":
         return RNA.C;
       default:
-        throw new TypeError("Invalid character");
+        throw new TypeError(`Invalid character: ${base}`);
     }
   }
 
   /**
-   * @param {DNA} DNA base which needs to be replaced.
+   * @param {DNA} base base which needs to be replaced.
    * @returns {RNA} Returns a RNA base which is the oposite base of the DNA base provided.
    */
-  public matchOpositeRnaBase(b: RNA): RNA {
-    switch (b) {
+  public matchOpositeRnaBase(base: RNA): RNA {
+    switch (base) {
       case RNA.A:
         return RNA.U;
       case RNA.U:
@@ -256,7 +248,7 @@ export class RNATranslator {
       case RNA.C:
         return RNA.G;
       default:
-        throw new TypeError("Invalid character");
+        throw new TypeError(`Invalid character: ${base}`);
     }
   }
 
@@ -265,25 +257,6 @@ export class RNATranslator {
    * @returns {String} String containing the RNA sequence provided.
    */
   public rnaToString(rna: RNA[]): string {
-    var dnaStr: string = "";
-    rna.forEach((base) => {
-      switch (base) {
-        case RNA.A:
-          dnaStr += 'A';
-          break;
-        case RNA.U:
-          dnaStr += 'U';
-          break;
-        case RNA.G:
-          dnaStr += 'G';
-          break;
-        case RNA.C:
-          dnaStr += 'C';
-          break;
-        default:
-          throw new TypeError("Invalid character");
-      }
-    });
-    return dnaStr;
+    return rna.join("");
   }
 }
