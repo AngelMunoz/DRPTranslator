@@ -1,5 +1,5 @@
 
-const { FuseBox } = require("fuse-box");
+const { FuseBox, JsonPlugin } = require("fuse-box");
 const { src, task, exec, tsc } = require('fuse-box/sparky');
 
 const tscConfig = {
@@ -17,8 +17,7 @@ task('clean', async context => {
     .exec();
 });
 
-task('build', async () => {
-  await exec('clean');
+task('build', ['clean'], async () => {
   await tsc('src/lib', tscConfig);
 });
 
@@ -33,8 +32,6 @@ task('test', async () => {
     .test('[tests/**/**.test.ts]')
 })
 
-task('default', async () => {
-  await exec('build');
-});
+task('default', ['build']);
 
 
