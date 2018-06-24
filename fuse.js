@@ -1,14 +1,15 @@
 
-const { FuseBox, JsonPlugin } = require("fuse-box");
-const { src, task, exec, tsc } = require('fuse-box/sparky');
+const { FuseBox } = require("fuse-box");
+const { src, task, tsc } = require('fuse-box/sparky');
 
 const tscConfig = {
-  target: 'es5',
+  target: "es5",
+  module: "umd",
   declaration: true,
-  outDir: 'dist/',
-  lib: ['es6'],
-  module: 'umd',
-  charset: 'utf-8'
+  lib: [
+    "es2015",
+  ],
+  charset: "utf-8"
 };
 
 task('clean', async context => {
