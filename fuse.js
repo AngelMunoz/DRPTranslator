@@ -6,6 +6,7 @@ const tscConfig = {
   target: "es5",
   module: "umd",
   declaration: true,
+  outDir: "dist",
   lib: [
     "es2015",
   ],
