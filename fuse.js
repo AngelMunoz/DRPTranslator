@@ -1,6 +1,6 @@
 
 const { FuseBox } = require("fuse-box");
-const { src, task, tsc } = require('fuse-box/sparky');
+const { src, task, tsc, context } = require('fuse-box/sparky');
 
 const tscConfig = {
   target: "es5",
@@ -12,6 +12,27 @@ const tscConfig = {
   ],
   charset: "utf-8"
 };
+const instruction = `>index.ts`;
+
+context({
+  getConfig() {
+    return FuseBox.init({
+      homeDir: "src/lib",
+      output: "dist/$name.js",
+      target: this.target || 'browser@es5',
+      plugins: [],
+      natives: {
+        process: false,
+        stream: false,
+        Buffer: false,
+        http: false,
+      },
+      tsConfig: [{ types: true }],
+      sourceMaps: true
+    });
+  }
+})
+
 
 task('clean', async context => {
   await src('./dist')
@@ -19,8 +40,14 @@ task('clean', async context => {
     .exec();
 });
 
-task('build', ['clean'], async () => {
-  await tsc('src/lib', tscConfig);
+task('build', ['clean'], async context => {
+  const browser = context.getConfig();
+  context.target = "server@es2017"
+  const server = context.getConfig();
+  browser.bundle("index.browser").instructions(instruction);
+  server.bundle("index").instructions(instruction);
+  await browser.run()
+  await server.run()
 });
 
 task('test', async () => {
