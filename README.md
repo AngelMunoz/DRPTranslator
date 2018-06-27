@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/AngelMunoz/DRPTranslator.svg?branch=master)](https://travis-ci.org/AngelMunoz/DRPTranslator)
 
 # **NOTICE**
-Since version 1.2.0 This library requires you to use **node 6+**
-
+- Since version 1.2.0 This library requires you to use **node 6+**
 
 # Hello everyone!
 Welcome to DNA-RNA-Protein Translator or if you may drptranslator
